@@ -14,5 +14,4 @@ public @Data class ModelDto implements Serializable {
 	private int modelYear;
 	private double basicTarif;
 
-	
 }
