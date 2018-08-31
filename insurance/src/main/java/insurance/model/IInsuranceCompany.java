@@ -1,9 +1,5 @@
 package insurance.model;
 
-import java.time.LocalDate;
-import java.util.List;
-
-import insurance.dto.*;
 
 public interface IInsuranceCompany {
 
