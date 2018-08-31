@@ -10,7 +10,7 @@ import insurance.entities.*;
 @Table(name = "tsadGimelLosses")
 public class TsadGimelLossJpa {
 	@Id
-	int id;		//format T0000/YY
+	String id;		//format T0000/YY
 	LocalDate event;
 	LocalDate creation;
 	@OneToOne

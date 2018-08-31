@@ -10,7 +10,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public @Data class HovaLossDto implements Serializable{
-	private int id; 
+	private String id; 
 	private LocalDate event;
 	private LocalDate creation;
 	private AddressJpa adress; //?????

@@ -10,7 +10,7 @@ import insurance.entities.*;
 @Table(name = "hovaLosses")
 public class HovaLossJpa {
 	@Id
-	int id; // format H0000/YY
+	String id; // format H0000/YY
 	LocalDate event;
 	LocalDate creation;
 	@OneToOne
@@ -23,8 +23,8 @@ public class HovaLossJpa {
 	double costAmbulance;
 	int daysOfDsability;
 	double averageSalaryInDay;
-	String injury;
-	double amounСompensation;
+	String inJury;
+	double amountСompensation;
 
 	@ManyToOne
 	PolicyJpa policyJpa;
