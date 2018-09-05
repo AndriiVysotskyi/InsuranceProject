@@ -14,36 +14,84 @@ import insurance.entities.losses.TsadGimelLossJpa;
 @Table(name = "persons")
 public class PersonJpa {
 	@Id
-	int idPerson;
+	int personId;
 	@Enumerated(EnumType.STRING)
 	Title title;
-	
+
 	String firstName;
 	String lastName;
-	LocalDate dateOfBirth;
-	
+	LocalDate birthDate;
+
 	@Enumerated(EnumType.STRING)
 	Gender gender;
-	
+
 	long licenseNumber;
 	LocalDate licenseIssueDate;
 	LocalDate licenseExpirationDate;
-	
+
 	LocalDate createDate;
 
-	@ManyToOne
-	AddressJpa adressPerson;
-	
-	@ManyToMany (mappedBy="drivers")
+	@OneToOne
+	ContactsJpa contactsJpa;
+
+	@ManyToMany(mappedBy = "drivers")
 	List<PolicyJpa> policies;
-	
-	@OneToMany(mappedBy="owner")
+
+	@OneToMany(mappedBy = "owner")
 	List<VehicleJpa> vehicles;
-	
-	@ManyToMany
-	List<HovaLossJpa> hovaLosses;
-	
-	@ManyToMany
+
+	@ManyToMany(mappedBy = "driver")
+	List<HovaLossJpa> driversHovaLosses;
+	@ManyToMany(mappedBy = "victim")
+	List<HovaLossJpa> victimsHovaLosses;
+
+	@OneToMany(mappedBy = "driver")
 	List<TsadGimelLossJpa> tsadGimelLosses;
-	
+
+	public PersonJpa() {
+		super();
 	}
+
+	public int getPersonId() {
+		return personId;
+	}
+
+	public Title getTitle() {
+		return title;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public LocalDate getBirthDate() {
+		return birthDate;
+	}
+
+	public Gender getGender() {
+		return gender;
+	}
+
+	public long getLicenseNumber() {
+		return licenseNumber;
+	}
+
+	public LocalDate getLicenseIssueDate() {
+		return licenseIssueDate;
+	}
+
+	public LocalDate getLicenseExpirationDate() {
+		return licenseExpirationDate;
+	}
+
+	public LocalDate getCreateDate() {
+		return createDate;
+	}
+	
+	
+
+}
