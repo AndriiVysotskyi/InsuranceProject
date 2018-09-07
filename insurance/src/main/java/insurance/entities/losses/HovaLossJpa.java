@@ -26,11 +26,9 @@ public class HovaLossJpa {
 	@ManyToOne
 	PolicyJpa policyJpa;
 
-	@ManyToMany
-	@JoinTable(name = "driver_hova_loss")
+	@ManyToOne
 	PersonJpa driver;
 	@ManyToMany
-	@JoinTable(name = "victim_hova_loss")
 	PersonJpa victim;
 
 	@ManyToOne

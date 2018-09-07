@@ -40,7 +40,7 @@ public class PersonJpa {
 	@OneToMany(mappedBy = "owner")
 	List<VehicleJpa> vehicles;
 
-	@ManyToMany(mappedBy = "driver")
+	@OneToMany(mappedBy = "driver")
 	List<HovaLossJpa> driversHovaLosses;
 	@ManyToMany(mappedBy = "victim")
 	List<HovaLossJpa> victimsHovaLosses;
@@ -91,7 +91,5 @@ public class PersonJpa {
 	public LocalDate getCreateDate() {
 		return createDate;
 	}
-	
-	
 
 }
