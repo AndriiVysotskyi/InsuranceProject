@@ -1,6 +1,7 @@
 package insurance.entities.losses;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -29,7 +30,7 @@ public class HovaLossJpa {
 	@ManyToOne
 	PersonJpa driver;
 	@ManyToMany
-	PersonJpa victim;
+	List<PersonJpa> victims;
 
 	@ManyToOne
 	EmployeeJpa employeeOfLosses;

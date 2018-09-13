@@ -34,7 +34,7 @@ public class VehicleJpa {
 	@ManyToOne
 	ModelJpa vehicleModel;
 
-	@OneToMany(mappedBy = "vehicleVictim")
+	@OneToMany(mappedBy = "victimsVehilce")
 	List<TsadGimelLossJpa> tsadGimelLosses;
 
 	@OneToMany(mappedBy = "vehicleCulprit")

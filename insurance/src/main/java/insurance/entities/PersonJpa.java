@@ -42,7 +42,7 @@ public class PersonJpa {
 
 	@OneToMany(mappedBy = "driver")
 	List<HovaLossJpa> driversHovaLosses;
-	@ManyToMany(mappedBy = "victim")
+	@ManyToMany(mappedBy = "victims")
 	List<HovaLossJpa> victimsHovaLosses;
 
 	@OneToMany(mappedBy = "driver")

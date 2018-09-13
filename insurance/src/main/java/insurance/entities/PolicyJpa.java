@@ -36,7 +36,7 @@ public class PolicyJpa {
 	@OneToMany(mappedBy = "policyJpa")
 	List<MakifLossJpa> makifLosses;
 	@OneToMany(mappedBy = "policyJpa")
-	List<HovaLossJpa> hovafLosses;
+	List<HovaLossJpa> hovaLosses;
 	@OneToMany(mappedBy = "policyJpa")
 	List<TsadGimelLossJpa> tsadGimelLosses;
 
