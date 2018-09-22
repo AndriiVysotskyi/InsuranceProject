@@ -8,30 +8,46 @@ import insurance.dto.enums.EmpPosition;
 import insurance.entities.losses.*;
 
 @Entity
-@Table(name = "Employees")
+@Table(name = "employees")
 public class EmployeeJpa {
 	@Id
 	private int workersId;
 	String firstName;
 	String lastName;
-	
+
 	@Enumerated(EnumType.STRING)
 	EmpPosition position;
-	
-	@OneToMany(mappedBy="agent")
+
+	@OneToMany(mappedBy = "agent")
 	List<PolicyJpa> policies;
-	
-	@OneToMany (mappedBy="employeeOfLosses")
-	List <HovaLossJpa> hovaLosses;
-	
-	@OneToMany (mappedBy="employeeOfLosses")
-	List <MakifLossJpa> makifLosses;
-	
-	@OneToMany (mappedBy="employeeOfLosses")
-	List <TsadGimelLossJpa> tsadGimelLosses;
-	
-	
-	
-	
-	
+
+	@OneToMany(mappedBy = "employeeOfLosses")
+	List<HovaLossJpa> hovaLosses;
+
+	@OneToMany(mappedBy = "employeeOfLosses")
+	List<MakifLossJpa> makifLosses;
+
+	@OneToMany(mappedBy = "employeeOfLosses")
+	List<TsadGimelLossJpa> tsadGimelLosses;
+
+	public EmployeeJpa() {
+		super();
+	}
+
+	public int getWorkersId() {
+		return workersId;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public EmpPosition getPosition() {
+		return position;
+	}
+
 }

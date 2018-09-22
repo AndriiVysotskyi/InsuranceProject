@@ -34,10 +34,50 @@ public class VehicleJpa {
 	@ManyToOne
 	ModelJpa vehicleModel;
 
-	@OneToMany (mappedBy = "vehicleVictim")
+	@OneToMany(mappedBy = "victimsVehilce")
 	List<TsadGimelLossJpa> tsadGimelLosses;
 
-	@OneToMany (mappedBy = "vehicleCulprit")
+	@OneToMany(mappedBy = "vehicleCulprit")
 	List<MakifLossJpa> makifLoss;
+
+	public VehicleJpa() {
+		super();
+	}
+
+	public String getRegNumber() {
+		return regNumber;
+	}
+
+	public int getYear() {
+		return year;
+	}
+
+	public float getEngineVolume() {
+		return engineVolume;
+	}
+
+	public double getActualPrice() {
+		return actualPrice;
+	}
+
+	public String getColor() {
+		return color;
+	}
+
+	public int getKilometrage() {
+		return kilometrage;
+	}
+
+	public String getVinnumber() {
+		return vinnumber;
+	}
+
+	public LocalDate getCreateDate() {
+		return createDate;
+	}
+
+	public boolean isActive() {
+		return active;
+	}
 
 }
