@@ -1,5 +1,6 @@
 package insurance.model;
 
+
 import java.time.LocalDate;
 import java.util.List;
 
@@ -9,6 +10,7 @@ import insurance.dto.lossesDto.HovaLossDto;
 import insurance.dto.lossesDto.MakifLossDto;
 import insurance.dto.lossesDto.TsadGimelLossDto;
 import insurance.entities.PersonJpa;
+
 
 public interface IInsuranceCompany {
 
