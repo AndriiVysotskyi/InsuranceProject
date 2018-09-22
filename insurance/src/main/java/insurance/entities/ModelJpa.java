@@ -20,4 +20,30 @@ public class ModelJpa {
 	
 	@OneToMany(mappedBy = "vehicleModel")
 	List<VehicleJpa> vehicles;
+
+	public ModelJpa() {
+		super();
+	}
+
+	public String getModelName() {
+		return modelName;
+	}
+
+	public String getCompany() {
+		return company;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public int getModelYear() {
+		return modelYear;
+	}
+
+	public double getBasicTarif() {
+		return basicTarif;
+	}
+	
+	
 }

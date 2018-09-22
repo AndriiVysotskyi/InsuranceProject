@@ -13,26 +13,49 @@ public class LegalEntityJpa {
 	@Id
 	@GeneratedValue
 	private int id;
-	
+
 	int idNumber;
 	String firstName;
 	String lastName;
 	String companyName;
-	boolean isActive;
-	
-	@ManyToOne
-	AddressJpa adress;
-	
-	@OneToMany(mappedBy = "legalEntity")
-	List<PolicyJpa> policies;
-	
-	@OneToMany(mappedBy="legalEntityOwner")
+
+	@OneToOne
+	ContactsJpa contactsJpa;
+
+//	@OneToMany(mappedBy = "legalEntity")
+//	List<PolicyJpa> policies;
+
+	@OneToMany(mappedBy = "legalEntityOwner")
 	List<VehicleJpa> vehicles;
-	
-	@OneToMany (mappedBy = "vehicleServiceJpa")
+
+	@OneToMany(mappedBy = "vehicleServiceJpa")
 	List<MakifLossJpa> makifLosses;
-	
-	@OneToMany (mappedBy = "vehicleServiceJpa")
+
+	@OneToMany(mappedBy = "vehicleServiceJpa")
 	List<TsadGimelLossJpa> tsadGimelLosses;
-	
+
+	public LegalEntityJpa() {
+		super();
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public int getIdNumber() {
+		return idNumber;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public String getCompanyName() {
+		return companyName;
+	}
+
 }
