@@ -3,6 +3,7 @@ package insurance.dto.lossesDto;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+import insurance.dto.AddressDto;
 import insurance.entities.*;
 import lombok.*;
 
@@ -13,8 +14,8 @@ public @Data class HovaLossDto implements Serializable{
 	private String id; 
 	private LocalDate event;
 	private LocalDate creation;
-	private AddressJpa adress; //?????
-	private long driverID;
+	private AddressDto adress; //?????
+	private int driverID;
 
 	private boolean ambulance;
 	private double costAmbulance;

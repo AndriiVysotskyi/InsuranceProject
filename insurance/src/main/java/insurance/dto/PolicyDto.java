@@ -2,6 +2,7 @@ package insurance.dto;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 
 import insurance.dto.enums.InsuranceType;
 import lombok.*;
@@ -16,7 +17,7 @@ public @Data class PolicyDto implements Serializable {
 
 	private LocalDate policyEffectiveDate;
 	private LocalDate policyExpireDate;
-	private LocalDate policyBreakPoint;
+	//private LocalDate policyBreakPoint;
 	private LocalDate createDate;
 
 	private double totalAmount;
@@ -25,6 +26,6 @@ public @Data class PolicyDto implements Serializable {
 	
 	private int agentID;
 	String regNumberOfVehicle;
-	int [] driversID;
+	 List<Integer> driversID;
 	int legalEntityID;
 }

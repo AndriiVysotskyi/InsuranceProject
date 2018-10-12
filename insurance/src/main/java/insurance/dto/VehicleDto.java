@@ -17,7 +17,7 @@ public @Data class VehicleDto implements Serializable {
 	private int kilometrage;
 	private String vinnumber;
 	private LocalDate createDate;
-	private boolean active;
+	//private boolean active;
 
 	private int personOwnerID;
 

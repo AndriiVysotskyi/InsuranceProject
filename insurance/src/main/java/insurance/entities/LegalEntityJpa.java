@@ -37,6 +37,19 @@ public class LegalEntityJpa {
 	public LegalEntityJpa() {
 		super();
 	}
+	
+	
+
+	public LegalEntityJpa(int idNumber, String firstName, String lastName, String companyName,
+			ContactsJpa contactsJpa) {
+		this.idNumber = idNumber;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.companyName = companyName;
+		this.contactsJpa = contactsJpa;
+	}
+
+
 
 	public int getId() {
 		return id;

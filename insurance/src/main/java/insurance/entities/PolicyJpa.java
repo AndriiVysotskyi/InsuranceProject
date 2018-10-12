@@ -12,7 +12,8 @@ import insurance.entities.losses.*;
 @Entity
 public class PolicyJpa {
 	@Id
-	String id; // format PH(PT, PM)0000/YY
+//	String id; // format PH(PT, PM)0000/YY
+	int id;
 
 	@Enumerated(EnumType.STRING)
 	InsuranceType insuranceType;
@@ -46,14 +47,31 @@ public class PolicyJpa {
 	@ManyToMany(mappedBy = "policies")
 	List<PersonJpa> drivers;
 
+
 	public PolicyJpa() {
 		super();
 	}
 
-	public String getId() {
+	public int getId() {
 		return id;
 	}
+	
 
+	public PolicyJpa(int id, InsuranceType insuranceType, LocalDate policyEffectiveDate, LocalDate policyExpireDate,
+			 LocalDate createDate, double totalAmount, boolean active, String additionalInfo,
+			EmployeeJpa agent, VehicleJpa vehicle,List<PersonJpa> drivers) {
+		this.id = id;
+		this.insuranceType = insuranceType;
+		this.policyEffectiveDate = policyEffectiveDate;
+		this.policyExpireDate = policyExpireDate;
+		this.createDate = createDate;
+		this.active = active;
+		this.additionalInfo = additionalInfo;
+		this.agent = agent;
+		this.vehicle=vehicle;
+		this.drivers=drivers;
+	}
+	
 	public InsuranceType getInsuranceType() {
 		return insuranceType;
 	}
@@ -88,6 +106,14 @@ public class PolicyJpa {
 
 	public EmployeeJpa getAgent() {
 		return agent;
+	}
+	
+	public List<PersonJpa> getDrivers() {
+		return drivers;
+	}
+
+	public void setDrivers(List<PersonJpa> drivers) {
+		this.drivers = drivers;
 	}
 
 //	@ManyToOne

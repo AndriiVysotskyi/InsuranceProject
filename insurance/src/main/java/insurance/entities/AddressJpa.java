@@ -35,6 +35,13 @@ public class AddressJpa {
 		super();
 	}
 
+	public AddressJpa(String city, String street, String houseNumber, boolean isGarageAddress) {
+		this.city = city;
+		this.street = street;
+		this.houseNumber = houseNumber;
+		this.isGarageAddress = isGarageAddress;
+	}
+
 	public int getId() {
 		return id;
 	}

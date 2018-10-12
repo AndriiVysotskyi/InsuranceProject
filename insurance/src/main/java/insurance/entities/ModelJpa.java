@@ -17,12 +17,19 @@ public class ModelJpa {
 	String country;
 	int modelYear;
 	double basicTarif;
-	
+
 	@OneToMany(mappedBy = "vehicleModel")
 	List<VehicleJpa> vehicles;
 
 	public ModelJpa() {
-		super();
+	}
+
+	public ModelJpa(String modelName, String company, String country, int modelYear, double basicTarif) {
+		this.modelName = modelName;
+		this.company = company;
+		this.country = country;
+		this.modelYear = modelYear;
+		this.basicTarif = basicTarif;
 	}
 
 	public String getModelName() {
@@ -44,6 +51,5 @@ public class ModelJpa {
 	public double getBasicTarif() {
 		return basicTarif;
 	}
-	
-	
+
 }

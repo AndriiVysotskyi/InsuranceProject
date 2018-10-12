@@ -9,7 +9,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public @Data class EmployeeDto implements Serializable {
-	// ??? private int workersId;
+	private int workersId;
 	private String firstName;
 	private String lastName;
 	private EmpPosition position;	

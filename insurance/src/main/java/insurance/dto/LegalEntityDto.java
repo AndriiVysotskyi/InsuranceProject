@@ -11,6 +11,6 @@ public @Data class LegalEntityDto implements Serializable {
 	private String firstName;
 	private String lastName;
 	private String companyName;
-	private boolean isActive;	
+	//private boolean isActive;	???
 	
 }

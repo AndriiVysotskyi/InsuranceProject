@@ -52,6 +52,22 @@ public class PersonJpa {
 		super();
 	}
 
+	public PersonJpa(int personId, Title title, String firstName, String lastName, LocalDate birthDate, Gender gender,
+			long licenseNumber, LocalDate licenseIssueDate, LocalDate licenseExpirationDate, LocalDate createDate,
+			ContactsJpa contactsJpa) {
+		this.personId = personId;
+		this.title = title;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.birthDate = birthDate;
+		this.gender = gender;
+		this.licenseNumber = licenseNumber;
+		this.licenseIssueDate = licenseIssueDate;
+		this.licenseExpirationDate = licenseExpirationDate;
+		this.createDate = createDate;
+		this.contactsJpa = contactsJpa;
+	}
+
 	public int getPersonId() {
 		return personId;
 	}

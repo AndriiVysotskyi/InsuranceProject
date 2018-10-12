@@ -25,6 +25,15 @@ public class ContactsJpa {
 		super();
 	}
 
+	public ContactsJpa(String emailAddress, int phoneNumber, AddressJpa addressJpa, int flatNumber, int zipCode) {
+		this.emailAddress = emailAddress;
+		this.phoneNumber = phoneNumber;
+		this.addressJpa = addressJpa;
+		this.flatNumber = flatNumber;
+		this.zipCode = zipCode;
+	}
+
+
 	public int getId() {
 		return id;
 	}
