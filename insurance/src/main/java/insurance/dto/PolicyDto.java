@@ -17,7 +17,7 @@ public @Data class PolicyDto implements Serializable {
 
 	private LocalDate policyEffectiveDate;
 	private LocalDate policyExpireDate;
-	//private LocalDate policyBreakPoint;
+	private LocalDate policyBreakPoint;
 	private LocalDate createDate;
 
 	private double totalAmount;
@@ -28,4 +28,22 @@ public @Data class PolicyDto implements Serializable {
 	String regNumberOfVehicle;
 	 List<Integer> driversID;
 	int legalEntityID;
+	
+	
+	// constructor from client to server
+	// createDate, totalAmount, active have to be created in server
+	public PolicyDto( InsuranceType insuranceType, LocalDate policyEffectiveDate,
+			LocalDate policyExpireDate, String additionalInfo,
+			int agentID, String regNumberOfVehicle, List<Integer> driversID, int legalEntityID) {
+		this.insuranceType = insuranceType;
+		this.policyEffectiveDate = policyEffectiveDate;
+		this.policyExpireDate = policyExpireDate;
+		this.additionalInfo = additionalInfo;
+		this.agentID = agentID;
+		this.regNumberOfVehicle = regNumberOfVehicle;
+		this.driversID = driversID;
+		this.legalEntityID = legalEntityID;
+	}
+	
+	
 }

@@ -17,11 +17,40 @@ public @Data class VehicleDto implements Serializable {
 	private int kilometrage;
 	private String vinnumber;
 	private LocalDate createDate;
-	//private boolean active;
 
 	private int personOwnerID;
 
-	private int LegalEntityOwnerID;
+	private int legalEntityOwnerID;
 
 	String vehicleModel;
+	
+	// owner is legalEntity, creatData
+		public VehicleDto(String regNumber, int year, float engineVolume, double actualPrice, String color, int kilometrage,
+				String vinnumber, int legalEntityOwnerID, String vehicleModel) {
+			this.regNumber = regNumber;
+			this.year = year;
+			this.engineVolume = engineVolume;
+			this.actualPrice = actualPrice;
+			this.color = color;
+			this.kilometrage = kilometrage;
+			this.vinnumber = vinnumber;
+			this.legalEntityOwnerID = legalEntityOwnerID;
+			this.vehicleModel = vehicleModel;
+		}
+
+		public VehicleDto(String regNumber, int year, float engineVolume, double actualPrice, String color,
+				int kilometrage, String vinnumber, String vehicleModel, int personOwnerID) {
+			this.regNumber = regNumber;
+			this.year = year;
+			this.engineVolume = engineVolume;
+			this.actualPrice = actualPrice;
+			this.color = color;
+			this.kilometrage = kilometrage;
+			this.vinnumber = vinnumber;
+			this.personOwnerID = personOwnerID;
+			this.vehicleModel = vehicleModel;
+		}
+		
+		
+		
 }

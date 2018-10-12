@@ -20,9 +20,9 @@ public interface IInsuranceCompany {
 	
 	//???InsuranceReturnCode addAddress(AddressDto address);
 
-	InsuranceReturnCode addLegalEntity(LegalEntityDto legalEntity, AddressDto address);
+	InsuranceReturnCode addLegalEntity(LegalEntityDto legalEntity, AdditionalInfoDto address);
 
-	InsuranceReturnCode addPerson(PersonDto person,AddressDto address);
+	InsuranceReturnCode addPerson(PersonDto person,AdditionalInfoDto address);
 
 	InsuranceReturnCode addPolicy(PolicyDto policy);
 
@@ -30,11 +30,11 @@ public interface IInsuranceCompany {
 	
 	InsuranceReturnCode addBill(BillDto bill);
 
-	InsuranceReturnCode addHovaLoss(HovaLossDto insuranceCase, AddressDto address);
+	InsuranceReturnCode addHovaLoss(HovaLossDto insuranceCase, AdditionalInfoDto address);
 
-	InsuranceReturnCode addTsadGimelLoss(TsadGimelLossDto insuranceCase, AddressDto address);
+	InsuranceReturnCode addTsadGimelLoss(TsadGimelLossDto insuranceCase, AdditionalInfoDto address);
 
-	InsuranceReturnCode addMakifLoss(MakifLossDto insuranceCase, AddressDto address);
+	InsuranceReturnCode addMakifLoss(MakifLossDto insuranceCase, AdditionalInfoDto address);
 
 	InsuranceReturnCode addDriverToPolicy(int idPolicy, int idPerson);
 

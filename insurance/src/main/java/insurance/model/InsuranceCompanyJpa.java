@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import insurance.dto.AddressDto;
+import insurance.dto.AdditionalInfoDto;
 import insurance.dto.BillDto;
 import insurance.dto.EmployeeDto;
 import insurance.dto.LegalEntityDto;
@@ -118,7 +118,7 @@ public class InsuranceCompanyJpa extends AbstractInsuranceCompany {
 	}
 
 	@Override
-	public InsuranceReturnCode addLegalEntity(LegalEntityDto legalEntity, AddressDto address) {
+	public InsuranceReturnCode addLegalEntity(LegalEntityDto legalEntity, AdditionalInfoDto address) {
 		if (legalEntities.existsById(legalEntity.getIdNumber())) {
 			return InsuranceReturnCode.NO_LEGALENTITY;
 		}
@@ -130,7 +130,7 @@ public class InsuranceCompanyJpa extends AbstractInsuranceCompany {
 		return InsuranceReturnCode.OK;
 	}
 
-	private ContactsJpa getContacts(AddressDto address) {
+	private ContactsJpa getContacts(AdditionalInfoDto address) {
 		AddressJpa addressJpa = new AddressJpa(address.getCity(), address.getStreet(), address.getHouseNumber(),
 				address.isGarageAddress());
 
@@ -139,7 +139,7 @@ public class InsuranceCompanyJpa extends AbstractInsuranceCompany {
 	}
 
 	@Override
-	public InsuranceReturnCode addPerson(PersonDto person, AddressDto address) {
+	public InsuranceReturnCode addPerson(PersonDto person, AdditionalInfoDto address) {
 		if (personses.existsById(person.getIdPerson())) {
 			return InsuranceReturnCode.PERSON_EXISTS;
 		}
@@ -194,7 +194,7 @@ public class InsuranceCompanyJpa extends AbstractInsuranceCompany {
 	}
 
 	@Override
-	public InsuranceReturnCode addHovaLoss(HovaLossDto insuranceCase, AddressDto address) {
+	public InsuranceReturnCode addHovaLoss(HovaLossDto insuranceCase, AdditionalInfoDto address) {
 		EmployeeJpa employeeOfLosses = employees.findById(insuranceCase.getEmployeeOfLossesID()).orElse(null);
 		if (employeeOfLosses == null) {
 			return InsuranceReturnCode.NO_EMPLOYEE;
@@ -223,13 +223,13 @@ public class InsuranceCompanyJpa extends AbstractInsuranceCompany {
 	}
 
 	@Override
-	public InsuranceReturnCode addTsadGimelLoss(TsadGimelLossDto insuranceCase, AddressDto address) {
+	public InsuranceReturnCode addTsadGimelLoss(TsadGimelLossDto insuranceCase, AdditionalInfoDto address) {
 
 		return null;
 	}
 
 	@Override
-	public InsuranceReturnCode addMakifLoss(MakifLossDto insuranceCase, AddressDto address) {
+	public InsuranceReturnCode addMakifLoss(MakifLossDto insuranceCase, AdditionalInfoDto address) {
 
 		return null;
 	}

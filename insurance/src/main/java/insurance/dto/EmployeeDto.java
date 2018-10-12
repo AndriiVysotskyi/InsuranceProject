@@ -12,6 +12,15 @@ public @Data class EmployeeDto implements Serializable {
 	private int workersId;
 	private String firstName;
 	private String lastName;
-	private EmpPosition position;	
+	private EmpPosition position;
+	
+	// workersId has to be created in server
+	public EmployeeDto(String firstName, String lastName, EmpPosition position) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.position = position;
+	}	
+	
+	
 	
 }
