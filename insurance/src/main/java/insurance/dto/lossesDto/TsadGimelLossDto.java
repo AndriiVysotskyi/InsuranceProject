@@ -13,7 +13,7 @@ public @Data class TsadGimelLossDto implements Serializable{
 	private String id;		
 	private LocalDate event;
 	private LocalDate creation;
-	private AddressJpa adress; //?????????
+	private String location;
 	private int driverID;
 	
 	boolean totalDamage;
@@ -27,4 +27,17 @@ public @Data class TsadGimelLossDto implements Serializable{
 	private int policyID;
 
 	private int employeeOfLossesID;
+
+	public TsadGimelLossDto(LocalDate event, String location, int driverID, boolean towtruck,
+			String vehicleVictimRegNumber, int policyID, int employeeOfLossesID) {
+		this.event = event;
+		this.location = location;
+		this.driverID = driverID;
+		this.towtruck = towtruck;
+		this.vehicleVictimRegNumber = vehicleVictimRegNumber;
+		this.policyID = policyID;
+		this.employeeOfLossesID = employeeOfLossesID;
+	}
+	
+	
 }

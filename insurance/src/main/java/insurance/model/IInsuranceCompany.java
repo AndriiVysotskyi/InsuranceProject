@@ -24,7 +24,7 @@ public interface IInsuranceCompany {
 
 	InsuranceReturnCode addPerson(PersonDto person,AdditionalInfoDto address);
 
-	InsuranceReturnCode addPolicy(PolicyDto policy);
+	PolicyDto addPolicy(PolicyDto policy);
 
 	InsuranceReturnCode addEmployee(EmployeeDto employee);
 	

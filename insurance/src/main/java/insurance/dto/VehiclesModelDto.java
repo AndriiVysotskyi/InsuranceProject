@@ -15,3 +15,5 @@ public @Data class VehiclesModelDto implements Serializable {
 	private double basicTarif;
 
 }
+
+

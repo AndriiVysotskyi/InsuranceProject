@@ -70,6 +70,7 @@ public class InsuranceCompanyJpa extends AbstractInsuranceCompany {
 
 	@Autowired
 	BillsRepository bills;
+
 	
 
 	@Override
@@ -81,8 +82,6 @@ public class InsuranceCompanyJpa extends AbstractInsuranceCompany {
 				model.getModelYear(), model.getBasicTarif()));
 		return InsuranceReturnCode.OK;
 	}
-	
-	
 
 	@Override
 	public InsuranceReturnCode addVehicle(VehicleDto vehicle) {
@@ -151,31 +150,56 @@ public class InsuranceCompanyJpa extends AbstractInsuranceCompany {
 		return InsuranceReturnCode.OK;
 	}
 
+	private EmployeeJpa getEmployee(int id) {
+		return employees.findById(id).get();
+	}
+
 	@Override // totalAmount calculation of the field "totalAmount" after entering all the
 				// data???
-	public InsuranceReturnCode addPolicy(PolicyDto policy) {
-		if (policies.existsById(policy.getPolicyNumber())) {
-			return InsuranceReturnCode.POLICY_EXISTS;
-		}
-		EmployeeJpa agent = employees.findById(policy.getAgentID()).orElse(null);
-		if (agent == null) {
-			return InsuranceReturnCode.NO_AGENT;
-		}
+	public PolicyDto addPolicy(PolicyDto policy) {
+
+		EmployeeJpa agent = getEmployee(policy.getAgentID());
+
 		VehicleJpa vehicle = vehicles.findById(policy.getRegNumberOfVehicle()).orElse(null);
-		if (vehicle == null) {
-			return InsuranceReturnCode.NO_VEHICLE;
+		if (vehicle==null) {
+			return null;
 		}
+		boolean active=true; // ???
+		
 		List<PersonJpa> drivers = getDrivers(policy.getDriversID());
-		new PolicyJpa(policy.getPolicyNumber(), policy.getInsuranceType(), policy.getPolicyEffectiveDate(),
-				policy.getPolicyEffectiveDate(), policy.getCreateDate(), policy.getTotalAmount(), policy.isActive(),
-				policy.getAdditionalInfo(), agent, vehicle, drivers);
-		return InsuranceReturnCode.OK;
+		LocalDate createDate=LocalDate.now();
+		int idPolicy;
+		policies.save(new PolicyJpa(idPolicy, policy.getInsuranceType(), policy.getPolicyEffectiveDate(),
+				policy.getPolicyEffectiveDate(), createDate, getTotalAmount(policy), active,
+				policy.getAdditionalInfo(), agent, vehicle, drivers));
+		
+		
+		return getPolicy(idPolicy);
+	}
+
+	private double getTotalAmount(PolicyDto policy) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 	private List<PersonJpa> getDrivers(List<Integer> drivers) {
-		// нужно проверить на их существование
+		/*List<PersonJpa> personDrivers;
+		for (Integer idDriver : drivers) {
+			PersonJpa personDriver=personses.findById(idDriver).orElse(null);
+			if (personDriver==null) {
+				return null;
+			}
+			personDrivers.add(personDriver);
+		}
+		*/
+		for (Integer idDriver : drivers) {
+			if(!personses.existsById(idDriver)) {
+				return null;
+			}	
+		}
 		return drivers.stream().map(x -> personses.findById(x).get()).collect(Collectors.toList());
 	}
+	
 
 	@Override
 	public InsuranceReturnCode addEmployee(EmployeeDto employee) {
@@ -278,22 +302,21 @@ public class InsuranceCompanyJpa extends AbstractInsuranceCompany {
 		return null;
 	}
 
-// как записываются пустые поля, как ноль, если это число
+	
 	@Override
 	public VehicleDto getVehicle(String regNumber) {
 		VehicleJpa vehicleJpa = vehicles.findById(regNumber).orElse(null);
-		if (vehicleJpa == null)
-			return null;
-
-		int personOwnerID = vehicleJpa.getOwner().getPersonId();
-		int LegalEntityOwnerID = vehicleJpa.getLegalEntityOwner().getId();
-		String vehicleModel=vehicleJpa.getVehicleModel().getModelName();
-		
-		return new VehicleDto(regNumber, vehicleJpa.getYear(), vehicleJpa.getEngineVolume(),
-				vehicleJpa.getActualPrice(), vehicleJpa.getColor(), vehicleJpa.getKilometrage(),
-				vehicleJpa.getVinnumber(), vehicleJpa.getCreateDate(), personOwnerID, LegalEntityOwnerID, vehicleModel);
+		return vehicleJpa == null? null:getVehicle(vehicleJpa);
 	}
-
+	
+	private VehicleDto getVehicle (VehicleJpa vehicleJpa) {
+		return new VehicleDto(vehicleJpa.getRegNumber(), vehicleJpa.getYear(), vehicleJpa.getEngineVolume(),
+				vehicleJpa.getActualPrice(), vehicleJpa.getColor(), vehicleJpa.getKilometrage(),
+				vehicleJpa.getVinnumber(), vehicleJpa.getCreateDate(), vehicleJpa.getOwner().getPersonId(),
+				vehicleJpa.getLegalEntityOwner().getId(), vehicleJpa.getVehicleModel().getModelName());
+	}
+	
+	
 	@Override
 	public PolicyDto getPolicy(int idPolicy) {
 
