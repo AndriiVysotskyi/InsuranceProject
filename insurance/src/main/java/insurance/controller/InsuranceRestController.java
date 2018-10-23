@@ -15,7 +15,7 @@ import insurance.model.IInsuranceCompany;
 
 @EnableJpaRepositories("insurance.repo")
 @EnableMongoRepositories("")
-@ComponentScan({"", "" })
+@ComponentScan("insurance.model")
 @EntityScan("insurance.entities")
 @RestController
 public class InsuranceRestController {
