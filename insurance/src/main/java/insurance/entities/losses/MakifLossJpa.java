@@ -17,7 +17,7 @@ public class MakifLossJpa {
 	@OneToOne
 	AddressJpa adressEvent;
 
-	@OneToMany
+	@ManyToOne
 	PersonJpa driver;
 
 	double totalDamage;
@@ -31,7 +31,7 @@ public class MakifLossJpa {
 
 	@ManyToOne
 	PolicyJpa policyJpa;
-	@OneToMany
+	@ManyToOne
 	LegalEntityJpa vehicleServiceJpa;
 	@ManyToOne
 	VehicleJpa vehicleCulprit; // second party vehicle

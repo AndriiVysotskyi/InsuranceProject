@@ -8,6 +8,7 @@ import javax.persistence.*;
 import insurance.dto.enums.Gender;
 import insurance.dto.enums.Title;
 import insurance.entities.losses.HovaLossJpa;
+import insurance.entities.losses.MakifLossJpa;
 import insurance.entities.losses.TsadGimelLossJpa;
 
 @Entity
@@ -48,6 +49,11 @@ public class PersonJpa {
 
 	@OneToMany(mappedBy = "driver")
 	List<TsadGimelLossJpa> tsadGimelLosses;
+	
+	@OneToMany(mappedBy = "driver")
+	List<MakifLossJpa> makifLosses;
+	
+	
 
 	public PersonJpa() {
 		super();
