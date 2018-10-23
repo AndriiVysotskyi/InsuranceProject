@@ -25,6 +25,7 @@ public class PersonJpa {
 	@Enumerated(EnumType.STRING)
 	Gender gender;
 
+	
 	long licenseNumber;
 	LocalDate licenseIssueDate;
 	LocalDate licenseExpirationDate;
@@ -107,5 +108,6 @@ public class PersonJpa {
 	public LocalDate getCreateDate() {
 		return createDate;
 	}
+	
 
 }

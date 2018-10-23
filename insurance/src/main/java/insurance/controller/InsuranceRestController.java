@@ -22,10 +22,10 @@ public class InsuranceRestController {
 	@Autowired
 	IInsuranceCompany company;
 
-	@PostMapping (value=ApiConstants.ADD_POLICY)
+	/*@PostMapping (value=ApiConstants.ADD_POLICY)
 	int addPocicy (@RequestBody PolicyDto policy) {
 		
 		return company.addPolicy(policy); 
-	}
+	}*/
 	
 }

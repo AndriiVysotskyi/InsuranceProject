@@ -4,6 +4,7 @@ import static org.junit.Assert.assertNotNull;
 
 import java.lang.reflect.Array;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -119,7 +120,7 @@ public class InsuranceCompanyJpa extends AbstractInsuranceCompany {
 	@Override
 	public InsuranceReturnCode addLegalEntity(LegalEntityDto legalEntity, AdditionalInfoDto address) {
 		if (legalEntities.existsById(legalEntity.getIdNumber())) {
-			return InsuranceReturnCode.NO_LEGALENTITY;
+			return InsuranceReturnCode.LEGALENTITY_EXISTS;
 		}
 		ContactsJpa contactsJpa = getContacts(address);
 
@@ -156,7 +157,7 @@ public class InsuranceCompanyJpa extends AbstractInsuranceCompany {
 
 	@Override // totalAmount calculation of the field "totalAmount" after entering all the
 				// data???
-	public PolicyDto addPolicy(PolicyDto policy) {
+	public PolicyDto addPolicy(PolicyDto policy) {//TODO
 
 		EmployeeJpa agent = getEmployee(policy.getAgentID());
 
@@ -166,9 +167,9 @@ public class InsuranceCompanyJpa extends AbstractInsuranceCompany {
 		}
 		boolean active=true; // ???
 		
-		List<PersonJpa> drivers = getDrivers(policy.getDriversID());
+		List<PersonJpa> drivers = getPersons(policy.getDriversID());
 		LocalDate createDate=LocalDate.now();
-		int idPolicy;
+		int idPolicy=1;//TODO
 		policies.save(new PolicyJpa(idPolicy, policy.getInsuranceType(), policy.getPolicyEffectiveDate(),
 				policy.getPolicyEffectiveDate(), createDate, getTotalAmount(policy), active,
 				policy.getAdditionalInfo(), agent, vehicle, drivers));
@@ -176,28 +177,31 @@ public class InsuranceCompanyJpa extends AbstractInsuranceCompany {
 		
 		return getPolicy(idPolicy);
 	}
-
+	
 	private double getTotalAmount(PolicyDto policy) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	private List<PersonJpa> getDrivers(List<Integer> drivers) {
-		/*List<PersonJpa> personDrivers;
-		for (Integer idDriver : drivers) {
-			PersonJpa personDriver=personses.findById(idDriver).orElse(null);
-			if (personDriver==null) {
+	private List<PersonJpa> getPersons(List<Integer> persons) {
+		List<PersonJpa> personDrivers = new ArrayList<PersonJpa> ();
+		//persons.stream().map(x -> personses.findByIdAndLicenceNumberNotNull(x)).collect(Collectors.toList());
+		for (Integer idDriver : persons) {
+			PersonJpa personJpa=personses.findByIdAndLicenceNumberNotNull(idDriver);
+			if (personJpa==null) {
 				return null;
 			}
-			personDrivers.add(personDriver);
+			
+			personDrivers.add(personJpa);
 		}
-		*/
-		for (Integer idDriver : drivers) {
+		
+		/*for (Integer idDriver : drivers) {
 			if(!personses.existsById(idDriver)) {
 				return null;
 			}	
 		}
-		return drivers.stream().map(x -> personses.findById(x).get()).collect(Collectors.toList());
+		return drivers.stream().map(x -> personses.findById(x).get()).collect(Collectors.toList());*/
+	return personDrivers;
 	}
 	
 
@@ -212,7 +216,7 @@ public class InsuranceCompanyJpa extends AbstractInsuranceCompany {
 	}
 
 	@Override
-	public InsuranceReturnCode addBill(BillDto bill) {
+	public InsuranceReturnCode addBill(BillDto bill) {//TODO Andrii
 
 		return null;
 	}
@@ -224,7 +228,7 @@ public class InsuranceCompanyJpa extends AbstractInsuranceCompany {
 			return InsuranceReturnCode.NO_EMPLOYEE;
 		}
 
-		List<PersonJpa> victims = personses.findById(insuranceCase.getVictimID()).orElse(null);
+		List<PersonJpa> victims = getVictims(insuranceCase.getVictimID());
 
 		PersonJpa driver = personses.findById(insuranceCase.getDriverID()).orElse(null);
 		if (driver == null) {
@@ -239,11 +243,25 @@ public class InsuranceCompanyJpa extends AbstractInsuranceCompany {
 		AddressJpa addressJpa = new AddressJpa(address.getCity(), address.getStreet(), address.getHouseNumber(),
 				address.isGarageAddress());
 
-		hovaLosses.save(new HovaLossJpa(insuranceCase.getId(), insuranceCase.getEvent(), insuranceCase.getCreation(),
+		hovaLosses.save(new HovaLossJpa(insuranceCase.getId(), insuranceCase.getEventData(), insuranceCase.getCreation(),
 				addressJpa, insuranceCase.isAmbulance(), insuranceCase.getCostAmbulance(),
 				insuranceCase.getDaysOfDsability(), insuranceCase.getAverageSalaryInDay(), insuranceCase.getInjury(),
 				insuranceCase.getAmounСompensation(), policyJpa, driver, victims, employeeOfLosses));
 		return InsuranceReturnCode.OK;
+	}
+
+	private List<PersonJpa> getVictims(List<Integer> victimID) {
+		List<PersonJpa> personVictims = new ArrayList<PersonJpa> ();
+		
+		for (Integer idVictim : victimID) {
+			PersonJpa personJpa=personses.findByIdAndLicenceNumberNotNull(idVictim);
+			if (personJpa==null) {
+				return null;
+			}
+			
+			personVictims.add(personJpa);
+		}
+		return personVictims;
 	}
 
 	@Override
@@ -278,9 +296,11 @@ public class InsuranceCompanyJpa extends AbstractInsuranceCompany {
 		if (driver == null)
 			return null;
 
-		return new PersonDto(driver.getPersonId(), driver.getTitle(), driver.getFirstName(), driver.getLastName(),
-				driver.getBirthDate(), driver.getGender(), driver.getLicenseNumber(), driver.getLicenseIssueDate(),
-				driver.getLicenseExpirationDate(), driver.getCreateDate());
+		return new PersonDto();//TODO
+				/*PersonDto(idDriver, driver.getTitle(), driver.getFirstName(),
+				driver.getLastName(), driver.getBirthDate(), driver.getGender(), 
+				driver.getLicenseNumber(), driver.getLicenseIssueDate(), 
+				driver.getLicenseIssueDate(), driver.getCreateDate(), driver.getAdditionalInfo());*/
 	}
 
 	@Override

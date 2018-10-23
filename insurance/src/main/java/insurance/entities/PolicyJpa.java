@@ -1,5 +1,6 @@
 package insurance.entities;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -10,7 +11,7 @@ import insurance.entities.losses.*;
 
 @Table(name = "policies")
 @Entity
-public class PolicyJpa {
+public class PolicyJpa implements Serializable{
 	@Id
 //	String id; // format PH(PT, PM)0000/YY
 	int id;
