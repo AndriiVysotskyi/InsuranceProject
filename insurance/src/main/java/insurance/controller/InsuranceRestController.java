@@ -19,8 +19,8 @@ import insurance.model.IInsuranceCompany;
 @EntityScan("insurance.entities")
 @RestController
 public class InsuranceRestController {
-	@Autowired
-	IInsuranceCompany company;
+	/*@Autowired
+	IInsuranceCompany company;*/
 
 	/*@PostMapping (value=ApiConstants.ADD_POLICY)
 	int addPocicy (@RequestBody PolicyDto policy) {

@@ -4,7 +4,10 @@ import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import insurance.entities.losses.TsadGimelLossJpa;
 
 @Entity
 @Table(name = "contacts")
@@ -21,6 +24,9 @@ public class ContactsJpa {
 	int flatNumber;
 	int zipCode;
 
+	@OneToOne
+	TsadGimelLossJpa tsadGimelLossJpa;
+	
 	public ContactsJpa() {
 		super();
 	}

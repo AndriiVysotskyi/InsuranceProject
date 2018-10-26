@@ -13,8 +13,9 @@ public class TsadGimelLossJpa {
 	String id; // format T0000/YY
 	LocalDate eventDate;
 	LocalDate creationDate;
+	
 	@OneToOne
-	AddressJpa address;
+	ContactsJpa address;
 
 	@ManyToOne
 	PersonJpa driver;

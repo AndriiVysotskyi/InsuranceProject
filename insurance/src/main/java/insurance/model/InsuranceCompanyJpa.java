@@ -49,6 +49,7 @@ import insurance.repo.VehiclesRepository;
 public class InsuranceCompanyJpa extends AbstractInsuranceCompany {
 	@Autowired
 	VehiclesModelsRepository vehiclesModels;
+	
 	@Autowired
 	VehiclesRepository vehicles;
 

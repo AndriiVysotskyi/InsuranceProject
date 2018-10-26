@@ -13,6 +13,7 @@ import javax.persistence.Table;
 public class ModelJpa {
 	@Id
 	String modelName;
+	
 	String company;
 	String country;
 	int modelYear;
@@ -20,6 +21,8 @@ public class ModelJpa {
 
 	@OneToMany(mappedBy = "vehicleModel")
 	List<VehicleJpa> vehicles;
+
+	
 
 	public ModelJpa() {
 	}
@@ -50,6 +53,10 @@ public class ModelJpa {
 
 	public double getBasicTarif() {
 		return basicTarif;
+	}
+	
+	public List<VehicleJpa> getVehicles() {
+		return vehicles;
 	}
 
 }

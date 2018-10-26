@@ -11,7 +11,7 @@ import insurance.entities.losses.*;
 
 @Table(name = "policies")
 @Entity
-public class PolicyJpa implements Serializable{
+public class PolicyJpa {
 	@Id
 //	String id; // format PH(PT, PM)0000/YY
 	int id;

@@ -14,8 +14,8 @@ import javax.persistence.OneToMany;
 //@Entity
 @Embeddable
 public class AddressJpa {
-	@Id
-	@GeneratedValue
+	/*@Id
+	@GeneratedValue*/
 	private int id;
 
 	String city;
@@ -26,8 +26,8 @@ public class AddressJpa {
 //	@OneToOne(mappedBy = "adressPerson")
 //	List<PersonJpa> persons;
 
-	@OneToMany(mappedBy = "address")
-	LegalEntityJpa legalEntity;
+//	@OneToMany(mappedBy = "address")
+//	LegalEntityJpa legalEntity;
 
 	boolean isGarageAddress;
 
