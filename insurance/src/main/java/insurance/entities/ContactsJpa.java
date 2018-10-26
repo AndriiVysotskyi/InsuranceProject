@@ -14,7 +14,7 @@ import insurance.entities.losses.TsadGimelLossJpa;
 public class ContactsJpa {
 	@Id
 	@GeneratedValue
-	private int id;
+	private int unique;
 
 	String emailAddress;
 	int phoneNumber;
@@ -41,7 +41,7 @@ public class ContactsJpa {
 
 
 	public int getId() {
-		return id;
+		return unique;
 	}
 
 	public String getEmailAddress() {

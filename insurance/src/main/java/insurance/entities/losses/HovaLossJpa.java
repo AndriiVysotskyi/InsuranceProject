@@ -11,7 +11,7 @@ import insurance.entities.*;
 @Table(name = "hovaLosses")
 public class HovaLossJpa {
 	@Id
-	String id; // format H0000/YY
+	String unique; // format H0000/YY
 	LocalDate eventDate;
 	LocalDate creationDate;
 	@Embedded
@@ -39,12 +39,11 @@ public class HovaLossJpa {
 		super();
 	}
 
-	
-	public HovaLossJpa(String id, LocalDate eventDate, LocalDate creationDate, AddressJpa addressJpa, boolean ambulance,
-			double costAmbulance, int daysOfDsability, double averageSalaryInDay, String injury,
+	public HovaLossJpa(String unique, LocalDate eventDate, LocalDate creationDate, AddressJpa addressJpa,
+			boolean ambulance, double costAmbulance, int daysOfDsability, double averageSalaryInDay, String injury,
 			double amountСompensation, PolicyJpa policyJpa, PersonJpa driver, List<PersonJpa> victims,
 			EmployeeJpa employeeOfLosses) {
-		this.id = id;
+		this.unique = unique;
 		this.eventDate = eventDate;
 		this.creationDate = creationDate;
 		this.addressJpa = addressJpa;
@@ -60,9 +59,8 @@ public class HovaLossJpa {
 		this.employeeOfLosses = employeeOfLosses;
 	}
 
-
 	public String getId() {
-		return id;
+		return unique;
 	}
 
 	public LocalDate getEventDate() {

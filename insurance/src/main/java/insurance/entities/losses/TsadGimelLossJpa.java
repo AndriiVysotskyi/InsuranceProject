@@ -10,7 +10,7 @@ import insurance.entities.*;
 @Table(name = "tsadGimelLosses")
 public class TsadGimelLossJpa {
 	@Id
-	String id; // format T0000/YY
+	String unique; // format T0000/YY
 	LocalDate eventDate;
 	LocalDate creationDate;
 	
@@ -31,7 +31,7 @@ public class TsadGimelLossJpa {
 	@ManyToOne
 	VehicleJpa victimsVehicle;
 
-	@OneToMany
+	@ManyToOne
 	LegalEntityJpa vehicleServiceJpa;
 
 	@ManyToOne
@@ -45,7 +45,7 @@ public class TsadGimelLossJpa {
 	}
 
 	public String getId() {
-		return id;
+		return unique;
 	}
 
 	public LocalDate getEventDate() {

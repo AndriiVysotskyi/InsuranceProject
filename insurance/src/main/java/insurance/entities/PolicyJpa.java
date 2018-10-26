@@ -1,8 +1,8 @@
 package insurance.entities;
 
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.*;
 
@@ -46,8 +46,7 @@ public class PolicyJpa {
 	VehicleJpa vehicle;
 
 	@ManyToMany(mappedBy = "policies")
-	List<PersonJpa> drivers;
-
+	Set<PersonJpa> drivers;
 
 	public PolicyJpa() {
 		super();
@@ -56,11 +55,10 @@ public class PolicyJpa {
 	public int getId() {
 		return id;
 	}
-	
 
 	public PolicyJpa(int id, InsuranceType insuranceType, LocalDate policyEffectiveDate, LocalDate policyExpireDate,
-			 LocalDate createDate, double totalAmount, boolean active, String additionalInfo,
-			EmployeeJpa agent, VehicleJpa vehicle,List<PersonJpa> drivers) {
+			LocalDate createDate, double totalAmount, boolean active, String additionalInfo, EmployeeJpa agent,
+			VehicleJpa vehicle, Set<PersonJpa> drivers) {
 		this.id = id;
 		this.insuranceType = insuranceType;
 		this.policyEffectiveDate = policyEffectiveDate;
@@ -69,10 +67,10 @@ public class PolicyJpa {
 		this.active = active;
 		this.additionalInfo = additionalInfo;
 		this.agent = agent;
-		this.vehicle=vehicle;
-		this.drivers=drivers;
+		this.vehicle = vehicle;
+		this.drivers = drivers;
 	}
-	
+
 	public InsuranceType getInsuranceType() {
 		return insuranceType;
 	}
@@ -108,12 +106,12 @@ public class PolicyJpa {
 	public EmployeeJpa getAgent() {
 		return agent;
 	}
-	
-	public List<PersonJpa> getDrivers() {
+
+	public Set<PersonJpa> getDrivers() {
 		return drivers;
 	}
 
-	public void setDrivers(List<PersonJpa> drivers) {
+	public void setDrivers(Set<PersonJpa> drivers) {
 		this.drivers = drivers;
 	}
 

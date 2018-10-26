@@ -11,10 +11,10 @@ import insurance.entities.*;
 @Table(name = "makif_losses")
 public class MakifLossJpa {
 	@Id
-	String id; // format M0000/YY
+	String unique; // format M0000/YY
 	LocalDate eventDate;
 	LocalDate creationDate;
-	@OneToOne
+	@Embedded
 	AddressJpa adressEvent;
 
 	@ManyToOne
@@ -44,7 +44,7 @@ public class MakifLossJpa {
 	}
 
 	public String getId() {
-		return id;
+		return unique;
 	}
 
 	public LocalDate getEventDate() {
