@@ -9,7 +9,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>cars</name>
+	<name>insurance</name>
 	<description>project for stuy</description>
 
 	<parent>
