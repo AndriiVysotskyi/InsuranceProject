@@ -25,11 +25,8 @@ public class VehicleJpa {
 	@ManyToOne
 	PersonJpa owner;
 
-
 	@ManyToOne
-	LegalEntityJpa LegalEntityOwner;
-
-
+	LegalEntityJpa legalEntityOwner;
 
 	@OneToMany(mappedBy = "vehicle")
 	List<PolicyJpa> policies;
@@ -37,7 +34,7 @@ public class VehicleJpa {
 	@ManyToOne
 	ModelJpa vehicleModel;
 
-	@OneToMany(mappedBy = "victimsVehilce")
+	@OneToMany(mappedBy = "victimsVehicle")
 	List<TsadGimelLossJpa> tsadGimelLosses;
 
 	@OneToMany(mappedBy = "vehicleCulprit")
@@ -46,10 +43,9 @@ public class VehicleJpa {
 	public VehicleJpa() {
 		super();
 	}
-	
 
 	public VehicleJpa(String regNumber, int year, float engineVolume, double actualPrice, String color, int kilometrage,
-			String vinnumber, LocalDate createDate,  PersonJpa owner, LegalEntityJpa legalEntityOwner,
+			String vinnumber, LocalDate createDate, PersonJpa owner, LegalEntityJpa legalEntityOwner,
 			ModelJpa vehicleModel) {
 		this.regNumber = regNumber;
 		this.year = year;
@@ -59,12 +55,11 @@ public class VehicleJpa {
 		this.kilometrage = kilometrage;
 		this.vinnumber = vinnumber;
 		this.createDate = createDate;
-		//this.active = active;
+		// this.active = active;
 		this.owner = owner;
-		LegalEntityOwner = legalEntityOwner;
+		this.legalEntityOwner = legalEntityOwner;
 		this.vehicleModel = vehicleModel;
 	}
-
 
 	public String getRegNumber() {
 		return regNumber;
@@ -101,29 +96,26 @@ public class VehicleJpa {
 	public boolean isActive() {
 		return active;
 	}
-	
+
 	public PersonJpa getOwner() {
 		return owner;
 	}
-	public LegalEntityJpa getLegalEntityOwner() {
-		return LegalEntityOwner;
-	}
 
+	public LegalEntityJpa getLegalEntityOwner() {
+		return legalEntityOwner;
+	}
 
 	public List<PolicyJpa> getPolicies() {
 		return policies;
 	}
 
-
 	public ModelJpa getVehicleModel() {
 		return vehicleModel;
 	}
 
-
 	public List<TsadGimelLossJpa> getTsadGimelLosses() {
 		return tsadGimelLosses;
 	}
-
 
 	public List<MakifLossJpa> getMakifLoss() {
 		return makifLoss;

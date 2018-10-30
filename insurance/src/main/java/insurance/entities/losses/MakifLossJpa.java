@@ -7,14 +7,14 @@ import javax.persistence.*;
 import insurance.dto.enums.MakifRisk;
 import insurance.entities.*;
 
+@Table(name = "makiflosses")
 @Entity
-@Table(name = "makif_losses")
 public class MakifLossJpa {
 	@Id
 	String id; // format M0000/YY
 	LocalDate eventDate;
 	LocalDate creationDate;
-	@OneToOne
+	@Embedded
 	AddressJpa adressEvent;
 
 	@ManyToOne

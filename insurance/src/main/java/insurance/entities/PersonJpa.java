@@ -26,7 +26,6 @@ public class PersonJpa {
 	@Enumerated(EnumType.STRING)
 	Gender gender;
 
-	
 	long licenseNumber;
 	LocalDate licenseIssueDate;
 	LocalDate licenseExpirationDate;
@@ -36,7 +35,8 @@ public class PersonJpa {
 	@OneToOne
 	ContactsJpa contactsJpa;
 
-	@ManyToMany(mappedBy = "drivers")
+	// @ManyToMany(mappedBy = "drivers")
+	@ElementCollection(targetClass = PolicyJpa.class)
 	List<PolicyJpa> policies;
 
 	@OneToMany(mappedBy = "owner")
@@ -49,11 +49,9 @@ public class PersonJpa {
 
 	@OneToMany(mappedBy = "driver")
 	List<TsadGimelLossJpa> tsadGimelLosses;
-	
+
 	@OneToMany(mappedBy = "driver")
 	List<MakifLossJpa> makifLosses;
-	
-	
 
 	public PersonJpa() {
 		super();
@@ -114,6 +112,5 @@ public class PersonJpa {
 	public LocalDate getCreateDate() {
 		return createDate;
 	}
-	
 
 }
