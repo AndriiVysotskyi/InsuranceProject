@@ -7,11 +7,11 @@ import javax.persistence.*;
 import insurance.dto.enums.MakifRisk;
 import insurance.entities.*;
 
+@Table(name = "makiflosses")
 @Entity
-@Table(name = "makif_losses")
 public class MakifLossJpa {
 	@Id
-	String unique; // format M0000/YY
+	String id; // format M0000/YY
 	LocalDate eventDate;
 	LocalDate creationDate;
 	@Embedded
@@ -44,7 +44,7 @@ public class MakifLossJpa {
 	}
 
 	public String getId() {
-		return unique;
+		return id;
 	}
 
 	public LocalDate getEventDate() {

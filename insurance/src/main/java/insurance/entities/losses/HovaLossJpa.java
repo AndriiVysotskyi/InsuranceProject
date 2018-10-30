@@ -7,11 +7,11 @@ import javax.persistence.*;
 
 import insurance.entities.*;
 
+@Table(name = "hovalosses")
 @Entity
-@Table(name = "hovaLosses")
 public class HovaLossJpa {
 	@Id
-	String unique; // format H0000/YY
+	String id; // format H0000/YY
 	LocalDate eventDate;
 	LocalDate creationDate;
 	@Embedded
@@ -39,11 +39,11 @@ public class HovaLossJpa {
 		super();
 	}
 
-	public HovaLossJpa(String unique, LocalDate eventDate, LocalDate creationDate, AddressJpa addressJpa,
-			boolean ambulance, double costAmbulance, int daysOfDsability, double averageSalaryInDay, String injury,
+	public HovaLossJpa(String id, LocalDate eventDate, LocalDate creationDate, AddressJpa addressJpa, boolean ambulance,
+			double costAmbulance, int daysOfDsability, double averageSalaryInDay, String injury,
 			double amountСompensation, PolicyJpa policyJpa, PersonJpa driver, List<PersonJpa> victims,
 			EmployeeJpa employeeOfLosses) {
-		this.unique = unique;
+		this.id = id;
 		this.eventDate = eventDate;
 		this.creationDate = creationDate;
 		this.addressJpa = addressJpa;
@@ -60,7 +60,7 @@ public class HovaLossJpa {
 	}
 
 	public String getId() {
-		return unique;
+		return id;
 	}
 
 	public LocalDate getEventDate() {

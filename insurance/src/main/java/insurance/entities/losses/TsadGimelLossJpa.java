@@ -6,14 +6,14 @@ import javax.persistence.*;
 
 import insurance.entities.*;
 
+@Table(name = "tsadgimellosses")
 @Entity
-@Table(name = "tsadGimelLosses")
 public class TsadGimelLossJpa {
 	@Id
-	String unique; // format T0000/YY
+	String id; // format T0000/YY
 	LocalDate eventDate;
 	LocalDate creationDate;
-	
+
 	@OneToOne
 	ContactsJpa address;
 
@@ -45,7 +45,7 @@ public class TsadGimelLossJpa {
 	}
 
 	public String getId() {
-		return unique;
+		return id;
 	}
 
 	public LocalDate getEventDate() {

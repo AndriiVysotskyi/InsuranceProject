@@ -16,16 +16,19 @@ import insurance.model.IInsuranceCompany;
 @EnableJpaRepositories("insurance.repo")
 @EnableMongoRepositories("")
 @ComponentScan("insurance.model")
-@EntityScan("insurance.entities")
+@EntityScan({ "insurance.entities", "insurance.entities" })
+
 @RestController
 public class InsuranceRestController {
-	/*@Autowired
-	IInsuranceCompany company;*/
+	/*
+	 * @Autowired IInsuranceCompany company;
+	 */
 
-	/*@PostMapping (value=ApiConstants.ADD_POLICY)
-	int addPocicy (@RequestBody PolicyDto policy) {
-		
-		return company.addPolicy(policy); 
-	}*/
-	
+	/*
+	 * @PostMapping (value=ApiConstants.ADD_POLICY) int addPocicy (@RequestBody
+	 * PolicyDto policy) {
+	 * 
+	 * return company.addPolicy(policy); }
+	 */
+
 }
