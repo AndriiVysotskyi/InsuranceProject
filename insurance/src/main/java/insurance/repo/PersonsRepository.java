@@ -6,4 +6,5 @@ import insurance.entities.PersonJpa;
 
 public interface PersonsRepository extends JpaRepository<PersonJpa, Integer> {
 
+	PersonJpa findByPersonIdAndLicenseNumberNotNull(int x);
 }

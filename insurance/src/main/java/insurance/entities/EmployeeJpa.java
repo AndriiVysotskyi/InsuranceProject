@@ -34,6 +34,15 @@ public class EmployeeJpa {
 		super();
 	}
 
+	
+	public EmployeeJpa(int workersId, String firstName, String lastName, EmpPosition position) {
+		this.workersId = workersId;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.position = position;
+	}
+
+
 	public int getWorkersId() {
 		return workersId;
 	}

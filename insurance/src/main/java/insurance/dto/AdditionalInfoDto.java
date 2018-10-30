@@ -8,7 +8,7 @@ import lombok.*;
 @SuppressWarnings("serial")
 @AllArgsConstructor
 @NoArgsConstructor
-public @Data class  AddressDto implements Serializable {
+public @Data class  AdditionalInfoDto implements Serializable {
 	
 	private String city;
 	private String  street;

@@ -14,35 +14,37 @@ import insurance.entities.PersonJpa;
 
 public interface IInsuranceCompany {
 
-	InsuranceReturnCode addModel(ModelDto model);
+	InsuranceReturnCode addModel(VehiclesModelDto model);
 
 	InsuranceReturnCode addVehicle(VehicleDto vehicle);
 	
 	//???InsuranceReturnCode addAddress(AddressDto address);
 
-	InsuranceReturnCode addLegalEntity(LegalEntityDto legalEntity);
+	InsuranceReturnCode addLegalEntity(LegalEntityDto legalEntity, AdditionalInfoDto address);
 
-	InsuranceReturnCode addPerson(PersonDto person);
+	InsuranceReturnCode addPerson(PersonDto person,AdditionalInfoDto address);
 
-	InsuranceReturnCode addPolicy(PolicyDto policy);
+	PolicyDto addPolicy(PolicyDto policy);
 
 	InsuranceReturnCode addEmployee(EmployeeDto employee);
 	
 	InsuranceReturnCode addBill(BillDto bill);
 
-	InsuranceReturnCode addHovaLoss(HovaLossDto insuranceCase);
+	InsuranceReturnCode addHovaLoss(HovaLossDto insuranceCase, AdditionalInfoDto address);
 
-	InsuranceReturnCode addTsadGimelLoss(TsadGimelLossDto insuranceCase);
+	InsuranceReturnCode addTsadGimelLoss(TsadGimelLossDto insuranceCase, AdditionalInfoDto address);
 
-	InsuranceReturnCode addMakifLoss(MakifLossDto insuranceCase);
+	InsuranceReturnCode addMakifLoss(MakifLossDto insuranceCase, AdditionalInfoDto address);
 
 	InsuranceReturnCode addDriverToPolicy(int idPolicy, int idPerson);
 
 	PersonDto getDriver(int idDriver); // getting driver's data if it exist
+	
+	PersonDto getOwner(int idOwner);
 
 	LegalEntityDto getLegalEntity(int idLegalEntity);
 
-	ModelDto getModel(String modelName);
+	VehiclesModelDto getModel(String modelName);
 
 	VehicleDto getVehicle(String regNumber);
 
@@ -77,6 +79,13 @@ public interface IInsuranceCompany {
 	InsuranceReturnCode policyBreakPoint(LocalDate dataBreak);
 
 	InsuranceReturnCode changeStatusPolisy(boolean active);
+	
+	InsuranceReturnCode changeofirstNamePerson(PersonDto idPerson);
+	
+	InsuranceReturnCode changeoLastNamePerson(PersonDto idPerson);
+	
+	InsuranceReturnCode changeoContactsPerson(PersonDto idPerson);
+
 
 	// метод, который удаляет старые записи
 	List<PolicyDto> clearPolicy (LocalDate date);

@@ -11,6 +11,15 @@ public @Data class LegalEntityDto implements Serializable {
 	private String firstName;
 	private String lastName;
 	private String companyName;
-	private boolean isActive;	
+	
+	private AdditionalInfoDto additionalInfo;
+
+	public LegalEntityDto(int idNumber, String firstName, String lastName, String companyName) {
+		this.idNumber = idNumber;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.companyName = companyName;
+	} 
+	
 	
 }

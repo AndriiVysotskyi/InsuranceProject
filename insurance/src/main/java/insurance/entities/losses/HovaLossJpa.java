@@ -7,8 +7,8 @@ import javax.persistence.*;
 
 import insurance.entities.*;
 
+@Table(name = "hovalosses")
 @Entity
-@Table(name = "hovaLosses")
 public class HovaLossJpa {
 	@Id
 	String id; // format H0000/YY
@@ -37,6 +37,26 @@ public class HovaLossJpa {
 
 	public HovaLossJpa() {
 		super();
+	}
+
+	public HovaLossJpa(String id, LocalDate eventDate, LocalDate creationDate, AddressJpa addressJpa, boolean ambulance,
+			double costAmbulance, int daysOfDsability, double averageSalaryInDay, String injury,
+			double amountСompensation, PolicyJpa policyJpa, PersonJpa driver, List<PersonJpa> victims,
+			EmployeeJpa employeeOfLosses) {
+		this.id = id;
+		this.eventDate = eventDate;
+		this.creationDate = creationDate;
+		this.addressJpa = addressJpa;
+		this.ambulance = ambulance;
+		this.costAmbulance = costAmbulance;
+		this.daysOfDsability = daysOfDsability;
+		this.averageSalaryInDay = averageSalaryInDay;
+		this.injury = injury;
+		this.amountСompensation = amountСompensation;
+		this.policyJpa = policyJpa;
+		this.driver = driver;
+		this.victims = victims;
+		this.employeeOfLosses = employeeOfLosses;
 	}
 
 	public String getId() {
