@@ -1,79 +1,45 @@
 package insurance.entities.losses;
 
 import java.time.LocalDate;
-
 import javax.persistence.*;
 
 import insurance.entities.*;
+import lombok.*;
 
 @Table(name = "tsadgimellosses")
 @Entity
-public class TsadGimelLossJpa {
+@AllArgsConstructor
+@NoArgsConstructor
+public @Data class TsadGimelLossJpa {
 	@Id
-	String id; // format T0000/YY
-	LocalDate eventDate;
-	LocalDate creationDate;
+	private String id; // format T0000/YY
+	private LocalDate eventDate;
+	private LocalDate creationDate;
 
 	@OneToOne
-	ContactsJpa address;
+	private ContactsJpa address;
 
 	@ManyToOne
-	PersonJpa driver;
+	private PersonJpa driver;
 
-	boolean totalDamage;
-	boolean towtruck;
-	String damages;
+	private boolean totalDamage;
+	private boolean towtruck;
+	private String damages;
 
-	String appraiser;
+	private String appraiser;
 
-	double amountСompensation;
-
-	@ManyToOne
-	VehicleJpa victimsVehicle;
+	private double amountСompensation;
 
 	@ManyToOne
-	LegalEntityJpa vehicleServiceJpa;
+	private VehicleJpa victimsVehicle;
 
 	@ManyToOne
-	PolicyJpa policyJpa;
+	private LegalEntityJpa vehicleServiceJpa;
 
 	@ManyToOne
-	EmployeeJpa employeeOfLosses;
+	private PolicyJpa policyJpa;
 
-	public TsadGimelLossJpa() {
-		super();
-	}
-
-	public String getId() {
-		return id;
-	}
-
-	public LocalDate getEventDate() {
-		return eventDate;
-	}
-
-	public LocalDate getCreationDate() {
-		return creationDate;
-	}
-
-	public boolean isTotalDamage() {
-		return totalDamage;
-	}
-
-	public boolean isTowtruck() {
-		return towtruck;
-	}
-
-	public String getDamages() {
-		return damages;
-	}
-
-	public String getAppraiser() {
-		return appraiser;
-	}
-
-	public double getAmountСompensation() {
-		return amountСompensation;
-	}
+	@ManyToOne
+	private EmployeeJpa employeeOfLosses;
 
 }

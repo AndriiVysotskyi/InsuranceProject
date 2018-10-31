@@ -8,49 +8,48 @@ import javax.persistence.*;
 
 import insurance.dto.enums.InsuranceType;
 import insurance.entities.losses.*;
+import lombok.*;
 
 @Table(name = "policies")
 @Entity
-public class PolicyJpa {
+@AllArgsConstructor
+@NoArgsConstructor
+public @Data class PolicyJpa {
 	@Id
 //	String id; // format PH(PT, PM)0000/YY
-	int id;
+	private int id;
 
 	@Enumerated(EnumType.STRING)
-	InsuranceType insuranceType;
+	private InsuranceType insuranceType;
 
-	LocalDate policyEffectiveDate;
-	LocalDate policyExpireDate;
-	LocalDate policyBreakPoint;
-	LocalDate createDate;
+	private LocalDate policyEffectiveDate;
+	private LocalDate policyExpireDate;
+	private LocalDate policyBreakPoint;
+	private LocalDate createDate;
 
-	double totalAmount;
-	boolean active;
+	private double totalAmount;
+	private boolean active;
 
-	String additionalInfo;
-
-	@ManyToOne
-	EmployeeJpa agent;
-
-	@OneToMany(mappedBy = "policyJpa")
-	List<BillJpa> bills;
-
-	@OneToMany(mappedBy = "policyJpa")
-	List<MakifLossJpa> makifLosses;
-	@OneToMany(mappedBy = "policyJpa")
-	List<HovaLossJpa> hovaLosses;
-	@OneToMany(mappedBy = "policyJpa")
-	List<TsadGimelLossJpa> tsadGimelLosses;
+	private String additionalInfo;
 
 	@ManyToOne
-	VehicleJpa vehicle;
+	private EmployeeJpa agent;
+
+	@OneToMany(mappedBy = "policyJpa")
+	private List<BillJpa> bills;
+
+	@OneToMany(mappedBy = "policyJpa")
+	private List<MakifLossJpa> makifLosses;
+	@OneToMany(mappedBy = "policyJpa")
+	private List<HovaLossJpa> hovaLosses;
+	@OneToMany(mappedBy = "policyJpa")
+	private List<TsadGimelLossJpa> tsadGimelLosses;
+
+	@ManyToOne
+	private VehicleJpa vehicle;
 
 	@ManyToMany(mappedBy = "policies")
-	Set<PersonJpa> drivers;
-
-	public PolicyJpa() {
-		super();
-	}
+	private Set<PersonJpa> drivers;
 
 	public int getId() {
 		return id;
@@ -71,50 +70,7 @@ public class PolicyJpa {
 		this.drivers = drivers;
 	}
 
-	public InsuranceType getInsuranceType() {
-		return insuranceType;
-	}
-
-	public LocalDate getPolicyEffectiveDate() {
-		return policyEffectiveDate;
-	}
-
-	public LocalDate getPolicyExpireDate() {
-		return policyExpireDate;
-	}
-
-	public LocalDate getPolicyBreakPoint() {
-		return policyBreakPoint;
-	}
-
-	public LocalDate getCreateDate() {
-		return createDate;
-	}
-
-	public double getTotalAmount() {
-		return totalAmount;
-	}
-
-	public boolean isActive() {
-		return active;
-	}
-
-	public String getAdditionalInfo() {
-		return additionalInfo;
-	}
-
-	public EmployeeJpa getAgent() {
-		return agent;
-	}
-
-	public Set<PersonJpa> getDrivers() {
-		return drivers;
-	}
-
-	public void setDrivers(Set<PersonJpa> drivers) {
-		this.drivers = drivers;
-	}
-
+	
 //	@ManyToOne
 //	LegalEntityJpa legalEntity;
 

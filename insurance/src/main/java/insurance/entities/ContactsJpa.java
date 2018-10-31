@@ -1,35 +1,29 @@
 package insurance.entities;
 
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import insurance.entities.losses.TsadGimelLossJpa;
+import lombok.*;
 
 @Entity
 @Table(name = "contacts")
-public class ContactsJpa {
+@AllArgsConstructor
+@NoArgsConstructor
+public @Data class ContactsJpa {
 	@Id
 	@GeneratedValue
 	private int contactId;
 
-	String emailAddress;
-	int phoneNumber;
+	private String emailAddress;
+	private int phoneNumber;
 
 	@Embedded
-	AddressJpa addressJpa;
-	int flatNumber;
-	int zipCode;
+	private AddressJpa addressJpa;
+	private int flatNumber;
+	private int zipCode;
 
 	@OneToOne
-	TsadGimelLossJpa tsadGimelLossJpa;
-
-	public ContactsJpa() {
-		super();
-	}
+	private TsadGimelLossJpa tsadGimelLossJpa;
 
 	public ContactsJpa(String emailAddress, int phoneNumber, AddressJpa addressJpa, int flatNumber, int zipCode) {
 		this.emailAddress = emailAddress;
@@ -39,24 +33,5 @@ public class ContactsJpa {
 		this.zipCode = zipCode;
 	}
 
-	public int getId() {
-		return contactId;
-	}
-
-	public String getEmailAddress() {
-		return emailAddress;
-	}
-
-	public int getPhoneNumber() {
-		return phoneNumber;
-	}
-
-	public int getFlatNumber() {
-		return flatNumber;
-	}
-
-	public int getZipCode() {
-		return zipCode;
-	}
-
+	
 }

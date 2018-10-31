@@ -3,42 +3,37 @@ package insurance.entities;
 import java.util.List;
 
 import javax.persistence.*;
-
-import insurance.entities.losses.MakifLossJpa;
-import insurance.entities.losses.TsadGimelLossJpa;
+import insurance.entities.losses.*;
+import lombok.*;
 
 @Entity
 @Table(name = "legal_entity")
-public class LegalEntityJpa {
+@AllArgsConstructor
+@NoArgsConstructor
+public @Data class LegalEntityJpa {
 	@Id
 	@GeneratedValue
 	private int id;
 
-	int idNumber;
-	String firstName;
-	String lastName;
-	String companyName;
+	private int idNumber;
+	private String firstName;
+	private String lastName;
+	private String companyName;
 
 	@OneToOne
-	ContactsJpa contactsJpa;
+	private ContactsJpa contactsJpa;
 
 //	@OneToMany(mappedBy = "legalEntity")
 //	List<PolicyJpa> policies;
 
 	@OneToMany(mappedBy = "legalEntityOwner")
-	List<VehicleJpa> vehicles;
+	private List<VehicleJpa> vehicles;
 
 	@OneToMany(mappedBy = "vehicleServiceJpa")
-	List<MakifLossJpa> makifLosses;
+	private List<MakifLossJpa> makifLosses;
 
 	@OneToMany(mappedBy = "vehicleServiceJpa")
-	List<TsadGimelLossJpa> tsadGimelLosses;
-
-	public LegalEntityJpa() {
-		super();
-	}
-	
-	
+	private List<TsadGimelLossJpa> tsadGimelLosses;
 
 	public LegalEntityJpa(int idNumber, String firstName, String lastName, String companyName,
 			ContactsJpa contactsJpa) {
@@ -48,27 +43,4 @@ public class LegalEntityJpa {
 		this.companyName = companyName;
 		this.contactsJpa = contactsJpa;
 	}
-
-
-
-	public int getId() {
-		return id;
-	}
-
-	public int getIdNumber() {
-		return idNumber;
-	}
-
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public String getCompanyName() {
-		return companyName;
-	}
-
 }
