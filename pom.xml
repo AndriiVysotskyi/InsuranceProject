@@ -61,6 +61,7 @@
 	</dependencies>
 
 	<build>
+		<sourceDirectory>insurance</sourceDirectory>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
