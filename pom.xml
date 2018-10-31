@@ -62,7 +62,7 @@
 
 	<build>
 		<sourceDirectory>insurance</sourceDirectory>
-		<testSourceDirectory>insurance</testSourceDirectory>
+		<testSourceDirectory>insurance/src/test/java</testSourceDirectory>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
