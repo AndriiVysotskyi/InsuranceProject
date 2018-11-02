@@ -20,15 +20,13 @@ import insurance.model.IInsuranceCompany;
 
 @RestController
 public class InsuranceRestController {
-	/*
-	 * @Autowired IInsuranceCompany company;
-	 */
 
-	/*
-	 * @PostMapping (value=ApiConstants.ADD_POLICY) int addPocicy (@RequestBody
-	 * PolicyDto policy) {
-	 * 
-	 * return company.addPolicy(policy); }
-	 */
+	@Autowired
+	IInsuranceCompany company;
+
+	@PostMapping(value = ApiConstants.ADD_POLICY)
+	PolicyDto addPocicy(@RequestBody PolicyDto policy) {
+		return company.addPolicy(policy);
+	}
 
 }

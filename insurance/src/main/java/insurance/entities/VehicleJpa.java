@@ -43,10 +43,8 @@ public @Data class VehicleJpa {
 	@OneToMany(mappedBy = "vehicleCulprit")
 	private List<MakifLossJpa> makifLoss;
 
-
 	public VehicleJpa(String regNumber, int year, float engineVolume, double actualPrice, String color, int kilometrage,
-			String vinnumber, LocalDate createDate, PersonJpa owner, LegalEntityJpa legalEntityOwner,
-			ModelJpa vehicleModel) {
+			String vinnumber, LocalDate createDate, PersonJpa owner, ModelJpa vehicleModel) {
 		this.regNumber = regNumber;
 		this.year = year;
 		this.engineVolume = engineVolume;
@@ -61,5 +59,19 @@ public @Data class VehicleJpa {
 		this.vehicleModel = vehicleModel;
 	}
 
-	
+	public VehicleJpa(String regNumber, int year, float engineVolume, double actualPrice, String color, int kilometrage,
+			String vinnumber, LocalDate createDate, LegalEntityJpa owner, ModelJpa vehicleModel) {
+		this.regNumber = regNumber;
+		this.year = year;
+		this.engineVolume = engineVolume;
+		this.actualPrice = actualPrice;
+		this.color = color;
+		this.kilometrage = kilometrage;
+		this.vinnumber = vinnumber;
+		this.createDate = createDate;
+		// this.active = active;
+		this.legalEntityOwner = owner;
+		this.vehicleModel = vehicleModel;
+	}
+
 }
