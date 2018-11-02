@@ -5,44 +5,44 @@ import java.util.List;
 
 import javax.persistence.*;
 
-import insurance.entities.losses.MakifLossJpa;
+import insurance.entities.losses.*;
 import insurance.entities.losses.TsadGimelLossJpa;
+import lombok.*;
 
 @Table(name = "vehicles")
 @Entity
-public class VehicleJpa {
+@AllArgsConstructor
+@NoArgsConstructor
+public @Data class VehicleJpa {
 	@Id
-	String regNumber;
-	int year;
-	float engineVolume;
-	double actualPrice;
-	String color;
-	int kilometrage;
-	String vinnumber;
-	LocalDate createDate;
-	boolean active;
+	private String regNumber;
+	private int year;
+	private float engineVolume;
+	private double actualPrice;
+	private String color;
+	private int kilometrage;
+	private String vinnumber;
+	private LocalDate createDate;
+	private boolean active;
 
 	@ManyToOne
-	PersonJpa owner;
+	private PersonJpa owner;
 
 	@ManyToOne
-	LegalEntityJpa legalEntityOwner;
+	private LegalEntityJpa legalEntityOwner;
 
 	@OneToMany(mappedBy = "vehicle")
-	List<PolicyJpa> policies;
+	private List<PolicyJpa> policies;
 
 	@ManyToOne
-	ModelJpa vehicleModel;
+	private ModelJpa vehicleModel;
 
 	@OneToMany(mappedBy = "victimsVehicle")
-	List<TsadGimelLossJpa> tsadGimelLosses;
+	private List<TsadGimelLossJpa> tsadGimelLosses;
 
 	@OneToMany(mappedBy = "vehicleCulprit")
-	List<MakifLossJpa> makifLoss;
+	private List<MakifLossJpa> makifLoss;
 
-	public VehicleJpa() {
-		super();
-	}
 
 	public VehicleJpa(String regNumber, int year, float engineVolume, double actualPrice, String color, int kilometrage,
 			String vinnumber, LocalDate createDate, PersonJpa owner, LegalEntityJpa legalEntityOwner,
@@ -61,64 +61,5 @@ public class VehicleJpa {
 		this.vehicleModel = vehicleModel;
 	}
 
-	public String getRegNumber() {
-		return regNumber;
-	}
-
-	public int getYear() {
-		return year;
-	}
-
-	public float getEngineVolume() {
-		return engineVolume;
-	}
-
-	public double getActualPrice() {
-		return actualPrice;
-	}
-
-	public String getColor() {
-		return color;
-	}
-
-	public int getKilometrage() {
-		return kilometrage;
-	}
-
-	public String getVinnumber() {
-		return vinnumber;
-	}
-
-	public LocalDate getCreateDate() {
-		return createDate;
-	}
-
-	public boolean isActive() {
-		return active;
-	}
-
-	public PersonJpa getOwner() {
-		return owner;
-	}
-
-	public LegalEntityJpa getLegalEntityOwner() {
-		return legalEntityOwner;
-	}
-
-	public List<PolicyJpa> getPolicies() {
-		return policies;
-	}
-
-	public ModelJpa getVehicleModel() {
-		return vehicleModel;
-	}
-
-	public List<TsadGimelLossJpa> getTsadGimelLosses() {
-		return tsadGimelLosses;
-	}
-
-	public List<MakifLossJpa> getMakifLoss() {
-		return makifLoss;
-	}
-
+	
 }

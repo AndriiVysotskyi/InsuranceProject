@@ -6,81 +6,40 @@ import javax.persistence.*;
 
 import insurance.dto.enums.MakifRisk;
 import insurance.entities.*;
+import lombok.*;
 
 @Table(name = "makiflosses")
 @Entity
-public class MakifLossJpa {
+@AllArgsConstructor
+@NoArgsConstructor
+public @Data class MakifLossJpa {
 	@Id
-	String id; // format M0000/YY
-	LocalDate eventDate;
-	LocalDate creationDate;
+	private String id; // format M0000/YY
+	private LocalDate eventDate;
+	private LocalDate creationDate;
 	@Embedded
-	AddressJpa adressEvent;
+	private AddressJpa adressEvent;
 
 	@ManyToOne
-	PersonJpa driver;
+	private PersonJpa driver;
 
-	double totalDamage;
-	boolean towtruck;
-	String damages;
+	private double totalDamage;
+	private boolean towtruck;
+	private String damages;
 
-	String appraiser;
+	private String appraiser;
 	@Enumerated(EnumType.STRING)
-	MakifRisk makifRisk;
-	double amounСompensation;
+	private MakifRisk makifRisk;
+	private double amounСompensation;
 
 	@ManyToOne
-	PolicyJpa policyJpa;
+	private PolicyJpa policyJpa;
 	@ManyToOne
-	LegalEntityJpa vehicleServiceJpa;
+	private LegalEntityJpa vehicleServiceJpa;
 	@ManyToOne
-	VehicleJpa vehicleCulprit; // second party vehicle
+	private VehicleJpa vehicleCulprit; // second party vehicle
 
 	@ManyToOne
-	EmployeeJpa employeeOfLosses;
-
-	public MakifLossJpa() {
-		super();
-	}
-
-	public String getId() {
-		return id;
-	}
-
-	public LocalDate getEventDate() {
-		return eventDate;
-	}
-
-	public LocalDate getCreationDate() {
-		return creationDate;
-	}
-
-	public AddressJpa getAdressEvent() {
-		return adressEvent;
-	}
-
-	public double getTotalDamage() {
-		return totalDamage;
-	}
-
-	public boolean isTowtruck() {
-		return towtruck;
-	}
-
-	public String getDamages() {
-		return damages;
-	}
-
-	public String getAppraiser() {
-		return appraiser;
-	}
-
-	public MakifRisk getMakifRisk() {
-		return makifRisk;
-	}
-
-	public double getAmounСompensation() {
-		return amounСompensation;
-	}
+	private EmployeeJpa employeeOfLosses;
 
 }
