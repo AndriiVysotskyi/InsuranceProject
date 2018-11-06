@@ -6,57 +6,37 @@ import javax.persistence.*;
 
 import insurance.dto.enums.EmpPosition;
 import insurance.entities.losses.*;
-
+import lombok.*;
 @Entity
 @Table(name = "employees")
-public class EmployeeJpa {
+@AllArgsConstructor
+@NoArgsConstructor
+public @Data class EmployeeJpa {
 	@Id
 	private int workersId;
-	String firstName;
-	String lastName;
+	private String firstName;
+	private String lastName;
 
 	@Enumerated(EnumType.STRING)
-	EmpPosition position;
+	private EmpPosition position;
 
 	@OneToMany(mappedBy = "agent")
-	List<PolicyJpa> policies;
+	private List<PolicyJpa> policies;
 
 	@OneToMany(mappedBy = "employeeOfLosses")
-	List<HovaLossJpa> hovaLosses;
+	private List<HovaLossJpa> hovaLosses;
 
 	@OneToMany(mappedBy = "employeeOfLosses")
-	List<MakifLossJpa> makifLosses;
+	private List<MakifLossJpa> makifLosses;
 
 	@OneToMany(mappedBy = "employeeOfLosses")
-	List<TsadGimelLossJpa> tsadGimelLosses;
-
-	public EmployeeJpa() {
-		super();
-	}
-
+	private List<TsadGimelLossJpa> tsadGimelLosses;
 	
 	public EmployeeJpa(int workersId, String firstName, String lastName, EmpPosition position) {
 		this.workersId = workersId;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.position = position;
-	}
-
-
-	public int getWorkersId() {
-		return workersId;
-	}
-
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public EmpPosition getPosition() {
-		return position;
 	}
 
 }

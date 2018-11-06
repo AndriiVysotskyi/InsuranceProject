@@ -6,93 +6,35 @@ import java.util.List;
 import javax.persistence.*;
 
 import insurance.entities.*;
+import lombok.*;
 
 @Table(name = "hovalosses")
 @Entity
-public class HovaLossJpa {
+@AllArgsConstructor
+@NoArgsConstructor
+public @Data class HovaLossJpa {
 	@Id
-	String id; // format H0000/YY
-	LocalDate eventDate;
-	LocalDate creationDate;
+	private String id; // format H0000/YY
+	private LocalDate eventDate;
+	private LocalDate creationDate;
 	@Embedded
-	AddressJpa addressJpa;
+	private AddressJpa addressJpa;
 
-	boolean ambulance;
-	double costAmbulance;
-	int daysOfDsability;
-	double averageSalaryInDay;
-	String injury;
-	double amountСompensation;
-
-	@ManyToOne
-	PolicyJpa policyJpa;
+	private boolean ambulance;
+	private double costAmbulance;
+	private int daysOfDsability;
+	private double averageSalaryInDay;
+	private String injury;
+	private double amountСompensation;
 
 	@ManyToOne
-	PersonJpa driver;
+	private PolicyJpa policyJpa;
+
+	@ManyToOne
+	private PersonJpa driver;
 	@ManyToMany
-	List<PersonJpa> victims;
+	private List<PersonJpa> victims;
 
 	@ManyToOne
-	EmployeeJpa employeeOfLosses;
-
-	public HovaLossJpa() {
-		super();
-	}
-
-	public HovaLossJpa(String id, LocalDate eventDate, LocalDate creationDate, AddressJpa addressJpa, boolean ambulance,
-			double costAmbulance, int daysOfDsability, double averageSalaryInDay, String injury,
-			double amountСompensation, PolicyJpa policyJpa, PersonJpa driver, List<PersonJpa> victims,
-			EmployeeJpa employeeOfLosses) {
-		this.id = id;
-		this.eventDate = eventDate;
-		this.creationDate = creationDate;
-		this.addressJpa = addressJpa;
-		this.ambulance = ambulance;
-		this.costAmbulance = costAmbulance;
-		this.daysOfDsability = daysOfDsability;
-		this.averageSalaryInDay = averageSalaryInDay;
-		this.injury = injury;
-		this.amountСompensation = amountСompensation;
-		this.policyJpa = policyJpa;
-		this.driver = driver;
-		this.victims = victims;
-		this.employeeOfLosses = employeeOfLosses;
-	}
-
-	public String getId() {
-		return id;
-	}
-
-	public LocalDate getEventDate() {
-		return eventDate;
-	}
-
-	public LocalDate getCreationDate() {
-		return creationDate;
-	}
-
-	public boolean isAmbulance() {
-		return ambulance;
-	}
-
-	public double getCostAmbulance() {
-		return costAmbulance;
-	}
-
-	public int getDaysOfDsability() {
-		return daysOfDsability;
-	}
-
-	public double getAverageSalaryInDay() {
-		return averageSalaryInDay;
-	}
-
-	public String getInjury() {
-		return injury;
-	}
-
-	public double getAmountСompensation() {
-		return amountСompensation;
-	}
-
+	private EmployeeJpa employeeOfLosses;
 }

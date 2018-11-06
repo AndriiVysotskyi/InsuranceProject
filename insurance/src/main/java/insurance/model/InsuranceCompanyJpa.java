@@ -1,45 +1,17 @@
 package insurance.model;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import insurance.dto.AdditionalInfoDto;
-import insurance.dto.BillDto;
-import insurance.dto.EmployeeDto;
-import insurance.dto.LegalEntityDto;
-import insurance.dto.VehiclesModelDto;
-import insurance.dto.PersonDto;
-import insurance.dto.PolicyDto;
-import insurance.dto.VehicleDto;
-import insurance.dto.enums.InsuranceReturnCode;
-import insurance.dto.lossesDto.HovaLossDto;
-import insurance.dto.lossesDto.MakifLossDto;
-import insurance.dto.lossesDto.TsadGimelLossDto;
-import insurance.entities.AddressJpa;
-import insurance.entities.ContactsJpa;
-import insurance.entities.EmployeeJpa;
-import insurance.entities.LegalEntityJpa;
-import insurance.entities.ModelJpa;
-import insurance.entities.PersonJpa;
-import insurance.entities.PolicyJpa;
-import insurance.entities.VehicleJpa;
-import insurance.entities.losses.HovaLossJpa;
-import insurance.repo.BillsRepository;
-import insurance.repo.EmployeeRepository;
-import insurance.repo.HovaLossRepository;
-import insurance.repo.LegalEntityRepository;
-import insurance.repo.MakifLossRepository;
-import insurance.repo.PersonsRepository;
-import insurance.repo.PoliciesRepository;
-import insurance.repo.TsadGimelLossRepository;
-import insurance.repo.VehiclesModelsRepository;
-import insurance.repo.VehiclesRepository;
+import insurance.dto.*;
+import insurance.dto.enums.*;
+import insurance.dto.lossesDto.*;
+import insurance.entities.*;
+import insurance.entities.losses.*;
+import insurance.repo.*;
 
 @SuppressWarnings("serial")
 @Service
@@ -86,31 +58,42 @@ public class InsuranceCompanyJpa extends AbstractInsuranceCompany {
 			return InsuranceReturnCode.VEHICLE_EXISTS;
 		}
 
-		PersonJpa owner = personses.findById(vehicle.getPersonOwnerID()).orElse(null);
-		if (owner == null) {
-			return InsuranceReturnCode.NO_PERSON;
-		}
-
-		LegalEntityJpa legalEntityOwner = legalEntities.findById(vehicle.getLegalEntityOwnerID()).orElse(null);
-		if (legalEntityOwner == null) {
-			return InsuranceReturnCode.NO_LEGALENTITY;
-		}
-
 		ModelJpa vehicleModel = vehiclesModels.findById(vehicle.getVehicleModel()).orElse(null);
 		if (vehicleModel == null) {
 			return InsuranceReturnCode.NO_MODEL;
 		}
 
-		vehicles.save(getVehicleJpa(vehicle, owner, legalEntityOwner, vehicleModel));
+		if ((vehicle.getPersonOwnerID() != 0 && vehicle.getLegalEntityOwnerID() != 0)
+				|| vehicle.getPersonOwnerID() == 0 && vehicle.getLegalEntityOwnerID() == 0) {
+			return InsuranceReturnCode.WRONG_OWNER;
+		}
+
+		if (vehicle.getPersonOwnerID() != 0) {
+			PersonJpa owner = personses.findById(vehicle.getPersonOwnerID()).orElse(null);
+			if (owner == null) {
+				return InsuranceReturnCode.NO_PERSON;
+			}
+			vehicles.save(createVehicleJpa(vehicle, owner, vehicleModel));
+		} else {
+			LegalEntityJpa owner = legalEntities.findById(vehicle.getLegalEntityOwnerID()).orElse(null);
+			if (owner == null) {
+				return InsuranceReturnCode.NO_LEGALENTITY;
+			}
+			vehicles.save(createVehicleJpa(vehicle, owner, vehicleModel));
+		}
 		return InsuranceReturnCode.OK;
 	}
 
-	private VehicleJpa getVehicleJpa(VehicleDto vehicle, PersonJpa owner, LegalEntityJpa legalEntityOwner,
-			ModelJpa vehicleModel) {
-
+	private VehicleJpa createVehicleJpa(VehicleDto vehicle, LegalEntityJpa owner, ModelJpa vehicleModel) {
 		return new VehicleJpa(vehicle.getRegNumber(), vehicle.getYear(), vehicle.getEngineVolume(),
 				vehicle.getActualPrice(), vehicle.getColor(), vehicle.getKilometrage(), vehicle.getVinnumber(),
-				vehicle.getCreateDate(), owner, legalEntityOwner, vehicleModel);
+				vehicle.getCreateDate(), owner, vehicleModel);
+	}
+
+	private VehicleJpa createVehicleJpa(VehicleDto vehicle, PersonJpa owner, ModelJpa vehicleModel) {
+		return new VehicleJpa(vehicle.getRegNumber(), vehicle.getYear(), vehicle.getEngineVolume(),
+				vehicle.getActualPrice(), vehicle.getColor(), vehicle.getKilometrage(), vehicle.getVinnumber(),
+				vehicle.getCreateDate(), owner, vehicleModel);
 	}
 
 	@Override
