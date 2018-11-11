@@ -3,6 +3,7 @@ package insurance.model;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
 import insurance.dto.*;
 import insurance.dto.enums.InsuranceReturnCode;
@@ -36,10 +37,10 @@ public interface IInsuranceCompany {
 
 	InsuranceReturnCode addMakifLoss(MakifLossDto insuranceCase, AdditionalInfoDto address);
 
-	InsuranceReturnCode addDriverToPolicy(int idPolicy, int idPerson);
+	InsuranceReturnCode addDriverToPolicy(String idPolicy, int idPerson);
 
 	PersonDto getDriver(int idDriver); // getting driver's data if it exist
-	
+	 
 	PersonDto getOwner(int idOwner);
 
 	LegalEntityDto getLegalEntity(int idLegalEntity);
@@ -48,7 +49,7 @@ public interface IInsuranceCompany {
 
 	VehicleDto getVehicle(String regNumber);
 
-	PolicyDto getPolicy(int idPolicy);
+	PolicyDto getPolicy(String idPolicy);
 
 	HovaLossDto getHovaLoss(String idHovaLoss);
 
@@ -56,19 +57,19 @@ public interface IInsuranceCompany {
 	
 	MakifLossDto getMakifLoss(String idMakifLoss);
 
-	boolean getStatusPolicy(int idPolicy);
+	boolean getStatusPolicy(String idPolicy);
 	
-	double getTotalAmountOfPolicy (int idPolicy);
+	double getTotalAmountOfPolicy (String idPolicy);
 	
 	double getAmounСompensation(int idInsuranceEvent);
 	
-	List<PersonJpa> getAllDriversInPolicy(int idPolicy); 
+	Set<PersonJpa> getAllDriversInPolicy(String idPolicy); 
 
 	List<String> getAllInsuranceEventOfVehicle(int idVehicle);//method, which will issue insurance cases according to the number of the machine
 	
 	List<String> getAllInsuranceEventOfDriver(int idPerson);//method, which will be the number of the car gives insurance cases for a particular person
 	
-	List<String> getAllLossPolicy(int idPolicy);
+	List<String> getAllLossPolicy(String idPolicy);
 	
 	List<PersonDto> getVictim(int idPerson);// method that will give information about the victim
 
@@ -78,13 +79,13 @@ public interface IInsuranceCompany {
 
 	InsuranceReturnCode policyBreakPoint(LocalDate dataBreak);
 
-	InsuranceReturnCode changeStatusPolisy(boolean active);
+	InsuranceReturnCode changeStatusPolisy(boolean active, String idPolicy);
 	
 	InsuranceReturnCode changeofirstNamePerson(PersonDto idPerson);
 	
 	InsuranceReturnCode changeoLastNamePerson(PersonDto idPerson);
 	
-	InsuranceReturnCode changeoContactsPerson(PersonDto idPerson);
+	InsuranceReturnCode changeContactsPerson(PersonDto idPerson);
 
 
 	// метод, который удаляет старые записи

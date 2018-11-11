@@ -2,6 +2,7 @@ package insurance.dto;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import insurance.dto.enums.InsuranceType;
@@ -12,13 +13,13 @@ import lombok.*;
 @AllArgsConstructor
 public @Data class PolicyDto implements Serializable {
 
-	private int policyNumber;
+	private String policyNumber;
 	private InsuranceType insuranceType;
 
 	private LocalDate policyEffectiveDate;
 	private LocalDate policyExpireDate;
 	private LocalDate policyBreakPoint;
-	private LocalDate createDate;
+	private LocalDateTime createDate;
 
 	private double totalAmount;
 	private boolean active;

@@ -1,6 +1,7 @@
 package insurance.entities;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
 
@@ -17,7 +18,7 @@ import lombok.*;
 public @Data class PolicyJpa {
 	@Id
 //	String id; // format PH(PT, PM)0000/YY
-	private int id;
+	private String id;
 
 	@Enumerated(EnumType.STRING)
 	private InsuranceType insuranceType;
@@ -25,7 +26,7 @@ public @Data class PolicyJpa {
 	private LocalDate policyEffectiveDate;
 	private LocalDate policyExpireDate;
 	private LocalDate policyBreakPoint;
-	private LocalDate createDate;
+	private LocalDateTime createDate;
 
 	private double totalAmount;
 	private boolean active;
@@ -51,14 +52,14 @@ public @Data class PolicyJpa {
 	@ManyToMany(mappedBy = "policies")
 	private Set<PersonJpa> drivers;
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public PolicyJpa(int id, InsuranceType insuranceType, LocalDate policyEffectiveDate, LocalDate policyExpireDate,
-			LocalDate createDate, double totalAmount, boolean active, String additionalInfo, EmployeeJpa agent,
+	public PolicyJpa(String id, InsuranceType insuranceType, LocalDate policyEffectiveDate, LocalDate policyExpireDate,
+			LocalDateTime createDate, double totalAmount, boolean active, String additionalInfo, EmployeeJpa agent,
 			VehicleJpa vehicle, Set<PersonJpa> drivers) {
-		this.id = id;
+		this.id=id;
 		this.insuranceType = insuranceType;
 		this.policyEffectiveDate = policyEffectiveDate;
 		this.policyExpireDate = policyExpireDate;

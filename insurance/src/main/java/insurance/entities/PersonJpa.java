@@ -3,6 +3,8 @@ package insurance.entities;
 import java.time.LocalDate;
 import java.util.List;
 import javax.persistence.*;
+
+import insurance.dto.AdditionalInfoDto;
 import insurance.dto.enums.*;
 import insurance.entities.losses.*;
 import lombok.*;
@@ -30,6 +32,7 @@ public @Data class PersonJpa {
 
 	private LocalDate createDate;
 
+	
 	@OneToOne
 	private ContactsJpa contactsJpa;
 

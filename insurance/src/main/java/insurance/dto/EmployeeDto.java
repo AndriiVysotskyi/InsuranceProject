@@ -10,6 +10,7 @@ import lombok.*;
 @NoArgsConstructor
 public @Data class EmployeeDto implements Serializable {
 	private int workersId;
+	private String login;
 	private String firstName;
 	private String lastName;
 	private EmpPosition position;
