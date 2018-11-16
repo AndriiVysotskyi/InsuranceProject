@@ -12,7 +12,8 @@ import lombok.*;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-public @Data class HovaLossJpa {
+@Data
+public  class HovaLossJpa {
 	@Id
 	private String id; // format H0000/YY
 	private LocalDate eventDate;
