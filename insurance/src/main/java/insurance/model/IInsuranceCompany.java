@@ -77,7 +77,7 @@ public interface IInsuranceCompany {
 	
 	void changeStatusPolisyIfExpireDate(); // method that automatically modifies the status of policies on expiration
 
-	InsuranceReturnCode policyBreakPoint(LocalDate dataBreak);
+	InsuranceReturnCode policyBreakPoint(String idPolicy, LocalDate dataBreak);
 
 	InsuranceReturnCode changeStatusPolisy(boolean active, String idPolicy);
 	

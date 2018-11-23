@@ -7,9 +7,11 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import insurance.dto.*;
 import insurance.dto.enums.*;
+import insurance.dto.exceptions.NoPolicyException;
 import insurance.dto.lossesDto.*;
 import insurance.entities.*;
 import insurance.entities.losses.*;
@@ -45,6 +47,7 @@ public class InsuranceCompanyJpa extends AbstractInsuranceCompany {
 	BillsRepository bills;
 
 	@Override
+	@Transactional
 	public InsuranceReturnCode addModel(VehiclesModelDto model) {
 		if (vehiclesModels.existsById(model.getModelName())) {
 			return InsuranceReturnCode.MODEL_EXISTS;
@@ -336,11 +339,15 @@ public class InsuranceCompanyJpa extends AbstractInsuranceCompany {
 
 	@Override
 	public PolicyDto getPolicy(String idPolicy) {// TODO
-		PolicyJpa policy = policies.findById(idPolicy).get();
-		/*
-		 * try { policies.findById(idPolicy).get(); } catch (Exception e) {
-		 * System.out.println(e.getMessage()); }
-		 */
+		PolicyJpa policy = null;
+
+		try {
+			policies.findById(idPolicy).get();
+			policy = policies.findById(idPolicy).get();
+		} catch (Exception e) {
+
+			throw new NoPolicyException();
+		}
 
 		List<Integer> driversID = policy.getDrivers().stream().map(x -> x.getPersonId()).collect(Collectors.toList());
 
@@ -440,9 +447,13 @@ public class InsuranceCompanyJpa extends AbstractInsuranceCompany {
 	}
 
 	@Override
-	public InsuranceReturnCode policyBreakPoint(LocalDate dataBreak) {
-
-		return null;
+	public InsuranceReturnCode policyBreakPoint(String idPolicy, LocalDate dataBreak) {
+		PolicyJpa policy = policies.findById(idPolicy).orElse(null);
+		if (policy.getPolicyBreakPoint() != null) {
+			return InsuranceReturnCode.IS_DATE_EXIST;
+		}
+		policy.setPolicyBreakPoint(dataBreak);
+		return InsuranceReturnCode.OK;
 	}
 
 	@Override
