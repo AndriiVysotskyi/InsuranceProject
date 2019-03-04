@@ -33,7 +33,7 @@ public @Data class PersonJpa {
 	private LocalDate createDate;
 
 	
-	@OneToOne
+	@OneToOne(mappedBy="person")
 	private ContactsJpa contactsJpa;
 
 	// @ManyToMany(mappedBy = "drivers")
@@ -56,7 +56,7 @@ public @Data class PersonJpa {
 
 
 	public PersonJpa(int personId, Title title, String firstName, String lastName, LocalDate birthDate, Gender gender,
-			long licenseNumber, LocalDate licenseIssueDate, LocalDate licenseExpirationDate, LocalDate createDate,
+			long licenseNumber, LocalDate licenseIssueDate, LocalDate licenseExpirationDate, 
 			ContactsJpa contactsJpa) {
 		this.personId = personId;
 		this.title = title;
@@ -67,7 +67,7 @@ public @Data class PersonJpa {
 		this.licenseNumber = licenseNumber;
 		this.licenseIssueDate = licenseIssueDate;
 		this.licenseExpirationDate = licenseExpirationDate;
-		this.createDate = createDate;
+		this.createDate = LocalDate.now();
 		this.contactsJpa = contactsJpa;
 	}
 

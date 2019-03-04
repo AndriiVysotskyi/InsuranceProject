@@ -7,7 +7,7 @@ import lombok.*;
 @SuppressWarnings("serial")
 @AllArgsConstructor
 @NoArgsConstructor
-public @Data class VehiclesModelDto implements Serializable {
+public @Data class ModelDto implements Serializable {
 	private String modelName;
 	private String company;
 	private String country;

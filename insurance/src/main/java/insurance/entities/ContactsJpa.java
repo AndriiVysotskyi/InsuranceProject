@@ -24,6 +24,8 @@ public @Data class ContactsJpa {
 
 	@OneToOne
 	private TsadGimelLossJpa tsadGimelLossJpa;
+	@OneToOne
+	private PersonJpa person;
 
 	public ContactsJpa(String emailAddress, int phoneNumber, AddressJpa addressJpa, int flatNumber, int zipCode) {
 		this.emailAddress = emailAddress;

@@ -26,7 +26,7 @@ public @Data class PolicyJpa {
 	private LocalDate policyEffectiveDate;
 	private LocalDate policyExpireDate;
 	private LocalDate policyBreakPoint;
-	private LocalDateTime createDate;
+	private LocalDate createDate;
 
 	private double totalAmount;
 	private boolean active;
@@ -50,25 +50,26 @@ public @Data class PolicyJpa {
 	private VehicleJpa vehicle;
 
 	@ManyToMany(mappedBy = "policies")
-	private Set<PersonJpa> drivers;
+	private List<PersonJpa> drivers;
 
 	public String getId() {
 		return id;
 	}
 
-	public PolicyJpa(String id, InsuranceType insuranceType, LocalDate policyEffectiveDate, LocalDate policyExpireDate,
-			LocalDateTime createDate, double totalAmount, boolean active, String additionalInfo, EmployeeJpa agent,
-			VehicleJpa vehicle, Set<PersonJpa> drivers) {
-		this.id=id;
+	public PolicyJpa(InsuranceType insuranceType, LocalDate policyEffectiveDate, LocalDate policyExpireDate,
+			double totalAmount, String additionalInfo, EmployeeJpa agent, VehicleJpa vehicle,
+			List<PersonJpa> drivers) {
 		this.insuranceType = insuranceType;
 		this.policyEffectiveDate = policyEffectiveDate;
 		this.policyExpireDate = policyExpireDate;
-		this.createDate = createDate;
-		this.active = active;
+		this.active = true;
 		this.additionalInfo = additionalInfo;
 		this.agent = agent;
 		this.vehicle = vehicle;
 		this.drivers = drivers;
+		this.totalAmount = totalAmount;
+		this.createDate = LocalDate.now();
+		this.id = insuranceType.toString() + createDate.toString();
 	}
 
 	

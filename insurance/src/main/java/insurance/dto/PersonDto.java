@@ -17,18 +17,18 @@ public @Data class PersonDto implements Serializable {
 	private Title title;
 	private String firstName;
 	private String lastName;
-	private LocalDate dateOfBirth;
+	private String dateOfBirth;
 	private Gender gender;
 	private long licenseNumber;
-	private LocalDate licenseIssueDate;
-	private LocalDate licenseExpirationDate;
-	private LocalDate createDate;
+	private String licenseIssueDate;
+	private String licenseExpirationDate;
+	private String createDate;
 	
 	private AdditionalInfoDto additionalInfo;
 	
 // creatData
-	public PersonDto(int idPerson, Title title, String firstName, String lastName, LocalDate dateOfBirth, Gender gender,
-			long licenseNumber, LocalDate licenseIssueDate, LocalDate licenseExpirationDate) {
+	public PersonDto(int idPerson, Title title, String firstName, String lastName, String dateOfBirth, Gender gender,
+			long licenseNumber, String licenseIssueDate, String licenseExpirationDate) {
 		this.idPerson = idPerson;
 		this.title = title;
 		this.firstName = firstName;

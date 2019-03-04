@@ -17,6 +17,6 @@ public @Data class  AdditionalInfoDto implements Serializable {
 	private int zipCode;
 	private String emailAddress;
 	private int phoneNumber;
-	private boolean isGarageAddress;	
+	private boolean garageAddress;	
 	
 }

@@ -15,19 +15,19 @@ import insurance.entities.PersonJpa;
 
 public interface IInsuranceCompany {
 
-	InsuranceReturnCode addModel(VehiclesModelDto model);
+	void addModel(ModelDto model);
 
-	InsuranceReturnCode addVehicle(VehicleDto vehicle);
+	void addVehicle(VehicleDto vehicle);
 	
 	//???InsuranceReturnCode addAddress(AddressDto address);
 
-	InsuranceReturnCode addLegalEntity(LegalEntityDto legalEntity, AdditionalInfoDto address);
+	void addLegalEntity(LegalEntityDto legalEntity);
 
-	InsuranceReturnCode addPerson(PersonDto person,AdditionalInfoDto address);
+	void addPerson(PersonDto person);
 
-	PolicyDto addPolicy(PolicyDto policy);
+	String addPolicy(PolicyDto policy);
 
-	InsuranceReturnCode addEmployee(EmployeeDto employee);
+	void addEmployee(EmployeeDto employee);
 	
 	InsuranceReturnCode addBill(BillDto bill);
 
@@ -39,13 +39,15 @@ public interface IInsuranceCompany {
 
 	InsuranceReturnCode addDriverToPolicy(String idPolicy, int idPerson);
 
-	PersonDto getDriver(int idDriver); // getting driver's data if it exist
+	PersonDto getPerson(int idDriver); // getting driver's data if it exist
 	 
 	PersonDto getOwner(int idOwner);
 
+	List<PersonDto> getAllPerson(); 
+	
 	LegalEntityDto getLegalEntity(int idLegalEntity);
 
-	VehiclesModelDto getModel(String modelName);
+	ModelDto getModel(String modelName);
 
 	VehicleDto getVehicle(String regNumber);
 
@@ -63,7 +65,7 @@ public interface IInsuranceCompany {
 	
 	double getAmounСompensation(int idInsuranceEvent);
 	
-	Set<PersonJpa> getAllDriversInPolicy(String idPolicy); 
+	List<PersonDto> getAllDriversInPolicy(String idPolicy); 
 
 	List<String> getAllInsuranceEventOfVehicle(int idVehicle);//method, which will issue insurance cases according to the number of the machine
 	
